@@ -6,7 +6,7 @@ export default function LogScreen() {
     <Container>
       <Header>
         <Body>
-          <Title>hewwo</Title>
+          <Title>Log Activity</Title>
         </Body>
       </Header>
       <Content padder>

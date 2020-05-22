@@ -6,7 +6,7 @@ export default function ProfileScreen() {
     <Container>
       <Header>
         <Body>
-          <Title>hewwo</Title>
+          <Title>Profile</Title>
         </Body>
       </Header>
       <Content padder>
