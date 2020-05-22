@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Container, Body, Content, Header, Title, Text } from "native-base";
 
-export default function HomeScreen() {
+export default function LogScreen() {
   return (
     <Container>
       <Header>
@@ -17,7 +17,3 @@ export default function HomeScreen() {
     </Container>
   );
 }
-
-HomeScreen.navigationOptions = {
-  header: null,
-};
