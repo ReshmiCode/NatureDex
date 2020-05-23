@@ -14,43 +14,15 @@ import {
 } from "native-base";
 const axios = require("axios").default;
 
-import sampleResponse from "../assets/sampleResponse.json";
-
-const DeckCard = (item) => {
-  const plant = item.item;
-  return (
-    <Card style={{ elevation: 3 }}>
-      <CardItem>
-        <Left>
-          <Body>
-            <Text>{plant.plant_name}</Text>
-            <Text note>
-              {plant.plant_details.common_names &&
-                plant.plant_details.common_names[0]}
-            </Text>
-          </Body>
-        </Left>
-      </CardItem>
-      <CardItem cardBody>
-        <Image
-          style={{ height: 300, flex: 1 }}
-          source={{
-            uri: plant.plant_details.wiki_image
-              ? plant.plant_details.wiki_image.value
-              : "https://classifieds.skyhinews.com/public/images/no-photo.png",
-          }}
-        />
-      </CardItem>
-    </Card>
-  );
-};
-
 export default function ChooseScreen(props) {
-  //const { data } = props.route.params;
+  const { data } = props.route.params;
   const swiper = useRef(null);
 
   const addPlant = async () => {
-    try {
+    const correctSug = swiper.current._root.state.selectedItem;
+    console.log(correctSug);
+
+    /*try {
       const user = await axios.get(
         `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${GLOBAL.id}`
       );
@@ -72,23 +44,29 @@ export default function ChooseScreen(props) {
       );
     } catch (err) {
       console.log(err);
-    }
+    }*/
   };
 
   return (
     <Container>
       <View>
+        <Body>
+          <Text>Select the plant you found:</Text>
+        </Body>
         <DeckSwiper
           ref={swiper}
-          dataSource={sampleResponse.suggestions}
+          dataSource={data.suggestions}
           looping={false}
           renderEmpty={() => (
             <View style={{ alignSelf: "center" }}>
-              <Text>Over</Text>
+              <Text>Please retake the photo and try again.</Text>
+              <Button onPress={() => props.navigation.navigate("AddImage")}>
+                <Text>Go Back</Text>
+              </Button>
             </View>
           )}
           renderItem={(item) => <DeckCard item={item} />}
-          onSwipeRight={() => console.log("right")}
+          onSwipeRight={addPlant}
           onSwipeLeft={() => console.log("left")}
         />
       </View>
@@ -104,15 +82,53 @@ export default function ChooseScreen(props) {
           padding: 15,
         }}
       >
-        <Button iconLeft onPress={() => swiper.current._root.swipeLeft()}>
+        <Button
+          iconLeft
+          onPress={() => {
+            swiper.current._root.swipeLeft();
+            swiper.current.props.onSwipeLeft();
+          }}
+        >
           <Icon name="arrow-back" />
-          <Text>Swipe Left</Text>
+          <Text>Not This One</Text>
         </Button>
-        <Button iconRight onPress={() => swiper.current._root.swipeRight()}>
+        <Button
+          iconRight
+          onPress={() => {
+            swiper.current._root.swipeRight();
+            swiper.current.props.onSwipeRight();
+          }}
+        >
           <Icon name="arrow-forward" />
-          <Text>Swipe Right</Text>
+          <Text>Select</Text>
         </Button>
       </View>
     </Container>
   );
 }
+
+const DeckCard = (item) => {
+  const plant = item.item;
+  return (
+    <Card style={{ elevation: 3 }}>
+      <CardItem>
+        <Left>
+          <Body>
+            <Text>{plant.plant_name}</Text>
+            <Text note>Confidence: {plant.probability.toFixed(2) * 100}%</Text>
+          </Body>
+        </Left>
+      </CardItem>
+      <CardItem cardBody>
+        <Image
+          style={{ height: 300, flex: 1 }}
+          source={{
+            uri: plant.plant_details.wiki_image
+              ? plant.plant_details.wiki_image.value
+              : "https://classifieds.skyhinews.com/public/images/no-photo.png",
+          }}
+        />
+      </CardItem>
+    </Card>
+  );
+};
