@@ -12,6 +12,9 @@ import mag from "../assets/images/magGlass.png";
 
 import { ANDROID_CLIENT_ID, IOS_CLIENT_ID } from "../config";
 
+GLOBAL = require("../global");
+const axios = require("axios").default;
+
 var styles = {
   wrapper: {},
   slide1: {
@@ -82,6 +85,53 @@ var styles = {
 };
 
 export default function SwiperComponent(props) {
+  GLOBAL.id = "";
+  GLOBAL.username = "";
+  GLOBAL.profilePic = "";
+  GLOBAL.userID = "";
+
+  const newProfile = () => {
+    const newUser = {
+      googleID: GLOBAL.id,
+      userName: GLOBAL.username,
+      profilePic: GLOBAL.profilePic,
+      plants: [],
+    };
+
+    const userDBLink =
+      "https://backyardhacks2020.wl.r.appspot.com/api/v1/users/" +
+      newUser.googleID;
+
+    axios
+      .get(userDBLink)
+      .then(function (response) {
+        if (response.data.data.length == 0) {
+          axios
+            .post("https://backyardhacks2020.wl.r.appspot.com/api/v1/users/", {
+              googleID: newUser.googleID,
+              userName: newUser.userName,
+              profilePic: newUser.profilePic,
+              plants: newUser.plants,
+            })
+            .then(function (response) {
+              console.log(response);
+              GLOBAL.userID = response.data.data._id;
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          console.log("User Created");
+        } else {
+          console.log("User already exists");
+          GLOBAL.userID = response.data.data[0]._id;
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .then(function () {});
+  };
+
   const signInWithGoogle = async () => {
     try {
       const { type, accessToken, user } = await Google.logInAsync({
@@ -92,6 +142,13 @@ export default function SwiperComponent(props) {
 
       if (type === "success") {
         console.log("LoginScreen.js.js 21 | ", user.givenName);
+
+        GLOBAL.id = user.id;
+        GLOBAL.username = user.givenName;
+        GLOBAL.profilePic = user.photoUrl;
+        GLOBAL.accessToken = accessToken;
+
+        newProfile();
 
         return accessToken;
       } else {
