@@ -28,7 +28,6 @@ var styles = {
 export default function LogScreen() {
   let [image, setImage] = useState(null);
   let [imageBase, setImageBase] = useState(null);
-  let [newPlants, setPlants] = useState([]);
 
   const getPickerPermission = async () => {
     if (Constants.platform.ios) {
@@ -67,6 +66,7 @@ export default function LogScreen() {
 
   const addPlant = async () => {
 
+    //TODO: Get plant info here
     // const data = {
     //   api_key: "",
     //   images: imageBase,
@@ -90,7 +90,7 @@ export default function LogScreen() {
     //   console.error('Error:', error);
     // });
 
-    //GLOBAL.userID = "112522383689004928445";
+    GLOBAL.userID = "112522383689004928445";
 
     axios
     .get(`https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${GLOBAL.userID}`)

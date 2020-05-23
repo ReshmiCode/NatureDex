@@ -100,8 +100,7 @@ export default function SwiperComponent(props) {
         };
 
         const userDBLink =
-            "https://backyardhacks2020.wl.r.appspot.com/api/v1/users/" +
-            newUser.googleID;
+            "https://backyardhacks2020.wl.r.appspot.com/api/v1/users/" + newUser.googleID;
 
         axios
             .get(userDBLink)
@@ -154,12 +153,15 @@ export default function SwiperComponent(props) {
 
                 newProfile();
 
+                //TODO: Navigate to profile here
+                //props.navigation.navigate("ProfileScreen");
+
                 return accessToken;
             } else {
                 return { cancelled: true };
             }
         } catch (e) {
-            console.log("LoginScreen.js.js 30 | Error with login", e);
+            console.log("Error with login", e);
             return { error: true };
         }
     };
