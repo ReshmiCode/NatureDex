@@ -115,20 +115,20 @@ export default function LogScreen(props) {
     <Container>
       <Content padder>
         <Body>
-          <Title style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>
+          <Title style={{ fontSize: 20, fontWeight: "bold", marginBottom: 0, textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5 }}>
             Identify a plant by a picture!
           </Title>
-          <Text>Please make sure the plant is centered in the photo.</Text>
+          <Text style={{fontSize: 14, color: "#fff", marginHorizontal: 40, textAlign: 'center', textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5}}>Please make sure the plant is centered in the photo.</Text>
           <Button info style={styles.button} onPress={takeImage}>
-            <Text> Take Photo </Text>
+            <Title style={{textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5}}> Take Photo </Title>
           </Button>
           <Button info style={styles.button} onPress={pickImage}>
-            <Text> Choose From Camera Roll </Text>
+            <Title style={{textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5}}> Choose From Camera Roll </Title>
           </Button>
           {image ? (
             <Image
               source={{ uri: image }}
-              style={{ width: 300, height: 300 }}
+              style={{ width: 300, height: 300, marginVertical: 10 }}
             />
           ) : (
             <Image
@@ -141,7 +141,7 @@ export default function LogScreen(props) {
               <Spinner color="green" />
             ) : (
               <Button info style={styles.button} onPress={identifyPlant}>
-                <Text> Submit </Text>
+                <Title style={{textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5}}> Submit </Title>
               </Button>
             ))}
         </Body>
