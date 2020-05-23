@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { Image } from "react-native";
-import { Container, Body, Button, Content, Title, Text } from "native-base";
+import {
+  Container,
+  Body,
+  Button,
+  Content,
+  Title,
+  Text,
+  Spinner,
+} from "native-base";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
 import plants from "../assets/images/plantoutlines.png";
 import { PLANT_API_KEY } from "../config";
-
 const axios = require("axios").default;
 
 var styles = {
@@ -21,6 +28,7 @@ var styles = {
 export default function LogScreen(props) {
   let [image, setImage] = useState(null);
   let [imageBase, setImageBase] = useState(null);
+  let [loading, setLoading] = useState(false);
 
   const getPickerPermission = async () => {
     if (Constants.platform.ios) {
@@ -57,40 +65,30 @@ export default function LogScreen(props) {
     }
   };
 
-  const addPlant = async () => {
+  const identifyPlant = async () => {
     const data = {
       images: ["data:image/jpeg;base64," + imageBase],
       modifiers: ["crops_fast", "similar_images"],
-      plant_details: ["common_names", "taxonomy", "url", "wiki_description"],
+      plant_details: [
+        "common_names",
+        "taxonomy",
+        "url",
+        "wiki_description",
+        "wiki_image",
+      ],
       plant_language: "en",
       api_key: PLANT_API_KEY,
     };
     let plantData;
+    setLoading(true);
     try {
       const response = await axios.post(
         `https://api.plant.id/v2/identify`,
         data
       );
       plantData = response.data;
-      const user = await axios.get(
-        `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${GLOBAL.id}`
-      );
-      const newPlants = user.data.data[0].plants;
-      const newPlant = await axios.post(
-        "https://backyardhacks2020.wl.r.appspot.com/api/v1/plants",
-        {
-          userID: GLOBAL.id,
-          image: plantData.images[0].url,
-          description: [plantData.suggestions[0].plant_name],
-        }
-      );
-      newPlants.push(newPlant.data.data._id);
-      await axios.patch(
-        `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${GLOBAL.id}`,
-        {
-          plants: newPlants,
-        }
-      );
+      setLoading(false);
+      props.navigation.navigate("ChoosePlant", { data: plantData });
     } catch (err) {
       console.log(err);
     }
@@ -121,24 +119,31 @@ export default function LogScreen(props) {
             Identify a plant by a picture!
           </Title>
           <Text>Please make sure the plant is centered in the photo.</Text>
-          <Image source={plants} style={{ height: 250, width: 250, flex: 1 }} />
           <Button info style={styles.button} onPress={takeImage}>
             <Text> Take Photo </Text>
           </Button>
           <Button info style={styles.button} onPress={pickImage}>
             <Text> Choose From Camera Roll </Text>
           </Button>
-          {image && (
-            <React.Fragment>
-              <Image
-                source={{ uri: image }}
-                style={{ width: 300, height: 300 }}
-              />
-              <Button info style={styles.button} onPress={addPlant}>
+          {image ? (
+            <Image
+              source={{ uri: image }}
+              style={{ width: 300, height: 300 }}
+            />
+          ) : (
+            <Image
+              source={plants}
+              style={{ height: 250, width: 250, flex: 1 }}
+            />
+          )}
+          {image &&
+            (loading ? (
+              <Spinner color="green" />
+            ) : (
+              <Button info style={styles.button} onPress={identifyPlant}>
                 <Text> Submit </Text>
               </Button>
-            </React.Fragment>
-          )}
+            ))}
         </Body>
       </Content>
     </Container>
