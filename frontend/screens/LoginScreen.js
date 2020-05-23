@@ -133,7 +133,7 @@ export default function SwiperComponent(props) {
 
   const signInWithGoogle = async () => {
     props.navigation.navigate("Root");
-    try {
+    /*try {
       const { type, accessToken, user } = await Google.logInAsync({
         iosClientId: IOS_CLIENT_ID,
         androidClientId: ANDROID_CLIENT_ID,
@@ -157,7 +157,7 @@ export default function SwiperComponent(props) {
     } catch (e) {
       console.log("LoginScreen.js.js 30 | Error with login", e);
       return { error: true };
-    }
+    }*/
   };
 
   return (

@@ -6,7 +6,7 @@ export default function PlantScreen() {
     <Container>
       <Content padder>
         <Body>
-          <Text>hi</Text>
+          <Text>plant</Text>
         </Body>
       </Content>
     </Container>
