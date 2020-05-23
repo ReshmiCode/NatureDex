@@ -16,20 +16,7 @@ import commonColor from "./native-base-theme/variables/commonColor";
 const Stack = createStackNavigator();
 
 export default function App(props) {
-    /*state = {fontLoaded: false};
-  async componentWillMount() {
-
-
-    try {
-      await Font.loadAsync({
-        PlayfairDisplay
-      });
-      this.setState({ fontLoaded: true });
-    } catch (error) {
-      console.log('error loading icon fonts', error);
-    }*/
-
-    return <LoginScreen />;
+    //return <LoginScreen />;
 
     const isLoadingComplete = useCachedResources();
 
