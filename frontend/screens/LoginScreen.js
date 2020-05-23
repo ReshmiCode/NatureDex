@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import * as Google from "expo-google-app-auth";
 import { Thumbnail, Button, Text, View } from "native-base";
 import { Image } from "react-native";
@@ -10,8 +10,6 @@ import tree from "../assets/images/tree.png";
 import camera from "../assets/images/camera.png";
 import ntbk from "../assets/images/ntbk.png";
 import mag from "../assets/images/magGlass.png";
-
-import { ANDROID_CLIENT_ID, IOS_CLIENT_ID } from "../config";
 
 GLOBAL = require("../global");
 const axios = require("axios").default;
