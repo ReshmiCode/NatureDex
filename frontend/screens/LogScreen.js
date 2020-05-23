@@ -115,15 +115,54 @@ export default function LogScreen(props) {
     <Container>
       <Content padder>
         <Body>
-          <Title style={{ fontSize: 20, fontWeight: "bold", marginBottom: 0, textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5 }}>
+          <Title
+            style={{
+              fontSize: 20,
+              fontWeight: "bold",
+              marginBottom: 0,
+              textShadowColor: "rgba(0, 0, 0, 0.3)",
+              textShadowOffset: { width: 0, height: 1 },
+              textShadowRadius: 5,
+            }}
+          >
             Identify a plant by a picture!
           </Title>
-          <Text style={{fontSize: 14, color: "#fff", marginHorizontal: 40, textAlign: 'center', textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5}}>Please make sure the plant is centered in the photo.</Text>
-          <Button info style={styles.button} onPress={takeImage}>
-            <Title style={{textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5}}> Take Photo </Title>
+          <Text
+            style={{
+              fontSize: 14,
+              color: "#fff",
+              marginHorizontal: 40,
+              textAlign: "center",
+              textShadowColor: "rgba(0, 0, 0, 0.3)",
+              textShadowOffset: { width: 0, height: 1 },
+              textShadowRadius: 5,
+            }}
+          >
+            Please make sure the plant is centered in the photo.
+          </Text>
+          <Button style={styles.button} onPress={takeImage}>
+            <Title
+              style={{
+                textShadowColor: "rgba(0, 0, 0, 0.3)",
+                textShadowOffset: { width: 0, height: 1 },
+                textShadowRadius: 5,
+              }}
+            >
+              {" "}
+              Take Photo{" "}
+            </Title>
           </Button>
-          <Button info style={styles.button} onPress={pickImage}>
-            <Title style={{textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5}}> Choose From Camera Roll </Title>
+          <Button style={styles.button} onPress={pickImage}>
+            <Title
+              style={{
+                textShadowColor: "rgba(0, 0, 0, 0.3)",
+                textShadowOffset: { width: 0, height: 1 },
+                textShadowRadius: 5,
+              }}
+            >
+              {" "}
+              Choose From Camera Roll{" "}
+            </Title>
           </Button>
           {image ? (
             <Image
@@ -140,8 +179,17 @@ export default function LogScreen(props) {
             (loading ? (
               <Spinner color="green" />
             ) : (
-              <Button info style={styles.button} onPress={identifyPlant}>
-                <Title style={{textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5}}> Submit </Title>
+              <Button style={styles.button} onPress={identifyPlant}>
+                <Title
+                  style={{
+                    textShadowColor: "rgba(0, 0, 0, 0.3)",
+                    textShadowOffset: { width: 0, height: 1 },
+                    textShadowRadius: 5,
+                  }}
+                >
+                  {" "}
+                  Submit{" "}
+                </Title>
               </Button>
             ))}
         </Body>
