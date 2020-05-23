@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const PlantSchema = new mongoose.Schema({
     userID: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         required: [true, 'Add a user']
     },
     image: {
