@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import * as Google from "expo-google-app-auth";
 import { Thumbnail, Button, Text, View } from "native-base";
 import { Image } from "react-native";
 import Swiper from "react-native-swiper";
@@ -65,11 +66,39 @@ var styles = {
         alignItems: "center",
         justifyContent: "center",
     },
+    GoogleStyle: {
+        flexDirection: "row",
+        alignItems: "center",
+        backgroundColor: "#4285F4",
+        borderWidth: 1,
+        borderColor: "#4285F4",
+        // height: 40,
+        //width: fit-content,
+        borderRadius: 5,
+        margin: 5,
+    },
 };
 
 export default function SwiperComponent(props) {
-    const signInWithGoogle = () => {
-        props.navigation.navigate("Root");
+    const signInWithGoogle = async () => {
+        try {
+            const { type, accessToken, user } = await Google.logInAsync({
+                iosClientId: IOS_CLIENT_ID,
+                androidClientId: ANDROID_CLIENT_ID,
+                scopes: ["profile", "email"],
+            });
+
+            if (type === "success") {
+                console.log("LoginScreen.js.js 21 | ", user.givenName);
+
+                return accessToken;
+            } else {
+                return { cancelled: true };
+            }
+        } catch (e) {
+            console.log("LoginScreen.js.js 30 | Error with login", e);
+            return { error: true };
+        }
     };
 
     return (

@@ -10,7 +10,14 @@ const INITIAL_ROUTE_NAME = "Home";
 
 export default function BottomTabNavigator({ navigation, route }) {
   return (
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+    <BottomTab.Navigator
+      initialRouteName={INITIAL_ROUTE_NAME}
+      tabBarOptions={{
+        activeBackgroundColor: "#B4CDD1",
+        inactiveBackgroundColor: "#B4CDD1",
+        showLabel: false,
+      }}
+    >
       <BottomTab.Screen
         name="Home"
         component={LogScreen}
