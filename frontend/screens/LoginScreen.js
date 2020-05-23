@@ -16,36 +16,17 @@ const axios = require("axios").default;
 
 var styles = {
   wrapper: {},
-  slide1: {
+  slides: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#CCD9CD",
-  },
-  slide2: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#A4C2AA",
-  },
-  slide3: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#A4C2BB",
-  },
-  slide4: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#B4CDD0",
   },
   natureDex: {
     flex: 1,
     alignSelf: "center",
   },
   desc: {
-    flex: 1.7,
+    flex: 2,
     textAlign: "center",
     color: "#0c4210",
     fontSize: 30,
@@ -78,8 +59,6 @@ var styles = {
     backgroundColor: "#4285F4",
     borderWidth: 1,
     borderColor: "#4285F4",
-    // height: 40,
-    //width: fit-content,
     borderRadius: 5,
     margin: 5,
   },
@@ -158,29 +137,29 @@ export default function SwiperComponent(props) {
   };
 
   return (
-    <Swiper style={styles.wrapper} showsButtons loop={false}>
-      <View style={styles.slide1}>
+    <Swiper showsButtons loop={false}>
+      <View style={[styles.slides, { backgroundColor: "#CCD9CD" }]}>
         <Image source={naturedexTitle} style={styles.natureDex}></Image>
         <Image source={tree} style={styles.icon}></Image>
         <Text style={styles.desc}>
           Identify plants when you're out and about!
         </Text>
       </View>
-      <View style={styles.slide2}>
+      <View style={[styles.slides, { backgroundColor: "#A4C2AA" }]}>
         <Image source={naturedexTitle} style={styles.natureDex}></Image>
         <Image source={camera} style={styles.icon}></Image>
         <Text style={styles.desc}>
           Learn more about any plant instantly by just snapping a photo!
         </Text>
       </View>
-      <View style={styles.slide3}>
+      <View style={[styles.slides, { backgroundColor: "#A4C2BB" }]}>
         <Image source={naturedexTitle} style={styles.natureDex}></Image>
         <Image source={ntbk} style={styles.icon}></Image>
         <Text style={styles.desc}>
           Keep track of all the plants you’ve seen before!
         </Text>
       </View>
-      <View style={styles.slide4}>
+      <View style={[styles.slides, { backgroundColor: "#B4CDD0" }]}>
         <Image source={naturedexTitle} style={styles.natureDex}></Image>
         <Image source={mag} style={styles.icon}></Image>
         <Text style={styles.loginDesc}>Go capture them all!</Text>
@@ -192,7 +171,7 @@ export default function SwiperComponent(props) {
             }}
             style={{ marginLeft: 9 }}
           />
-          <Text style={styles.TextStyle}>Sign in with Google</Text>
+          <Text style={styles.TextStyle}>Sign In With Google</Text>
         </Button>
       </View>
     </Swiper>
