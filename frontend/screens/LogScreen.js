@@ -67,27 +67,31 @@ export default function LogScreen() {
     };
     let plantData;
 
-    axios
+    /*axios
       .post(`https://api.plant.id/v2/identify`, data)
       .then((response) => {
-        console.log(response);
+        var propValue;
+        for (var propName in response.data) {
+          propValue = response.data[propName];
+          console.log(propName, propValue);
+        }
+        //console.log(response.data.plant_name);
       })
       .catch((error) => {
         console.log(error.response);
-      });
+      });*/
 
     try {
-      /*console.log(PLANT_API_KEY);
-      plantData = await axios.post(`https://api.plant.id/v2/identify`, {
-        params: data,
-      });
-      console.log(plantData);
-
+      const response = await axios.post(
+        `https://api.plant.id/v2/identify`,
+        data
+      );
+      plantData = response.data;
       const user = await axios.get(
         `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${GLOBAL.id}`
       );
       const newPlants = user.data.data[0].plants;
-      await axios.post(
+      const newPlant = await axios.post(
         "https://backyardhacks2020.wl.r.appspot.com/api/v1/plants",
         {
           userID: GLOBAL.id,
@@ -95,13 +99,13 @@ export default function LogScreen() {
           description: [plantData.suggestions[0].plant_name],
         }
       );
-      newPlants.push(response.data.data._id);
+      newPlants.push(newPlant.data.data._id);
       await axios.patch(
         `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${GLOBAL.id}`,
         {
           plants: newPlants,
         }
-      );*/
+      );
     } catch (err) {
       console.log(err);
     }
