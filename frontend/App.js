@@ -13,6 +13,10 @@ import commonColor from "./native-base-theme/variables/commonColor";
 const Stack = createStackNavigator();
 
 export default function App(props) {
+  // return(
+  //   <LoginScreen/>
+  // );
+   
   const isLoadingComplete = useCachedResources();
 
   if (!isLoadingComplete) {
