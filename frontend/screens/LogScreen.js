@@ -25,6 +25,7 @@ var styles = {
 
 export default function LogScreen() {
   let [image, setImage] = useState(null);
+  let [imageBase, setImageBase] = useState(null);
 
   const getPickerPermission = async () => {
     if (Constants.platform.ios) {
@@ -54,6 +55,7 @@ export default function LogScreen() {
       });
       if (!result.cancelled) {
         setImage(result.uri);
+        setImageBase(result.base64);
       }
     } catch (E) {
       console.log(E);
@@ -61,7 +63,30 @@ export default function LogScreen() {
   };
 
   const addPlant = async () => {
-    console.log(image);
+
+    // const data = {
+    //   api_key: "",
+    //   images: imageBase,
+    //   modifiers: ["crops_fast", "similar_images"],
+    //   plant_language: "en",
+    //   plant_details: ["common_names", "url", "name_authority","wiki_description", "taxonomy","synonyms"]
+    // };
+    
+    // fetch('https://api.plant.id/v2/identify', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+    //   console.log('Success:', data);
+    // })
+    // .catch((error) => {
+    //   console.error('Error:', error);
+    // });
+  
   };
 
   const takeImage = async () => {
@@ -74,6 +99,7 @@ export default function LogScreen() {
       });
       if (!result.cancelled) {
         setImage(result.uri);
+        setImageBase(result.base64);
       }
     } catch (E) {
       console.log(E);
