@@ -30,7 +30,9 @@ export default function LogScreen() {
       </Header>
       <Content padder>
         <Body>
-          <Title>Identify a plant by a picture!</Title>
+          <Title style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>
+            Identify a plant by a picture!
+          </Title>
           <Text>Please make sure the plant is centered in the photo.</Text>
           <Image source={plants} style={{ height: 300, width: 300, flex: 1 }} />
           <Button info style={styles.button}>
