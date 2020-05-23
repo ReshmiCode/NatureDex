@@ -6,6 +6,9 @@ import { Platform, StatusBar, StyleSheet, View } from "react-native";
 import useCachedResources from "./hooks/useCachedResources";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import LoginScreen from "./screens/LoginScreen";
+import { StyleProvider } from "native-base";
+import getTheme from "./native-base-theme/components";
+import commonColor from "./native-base-theme/variables/commonColor";
 
 const Stack = createStackNavigator();
 
@@ -16,15 +19,17 @@ export default function App(props) {
     return null;
   } else {
     return (
-      <View style={styles.container}>
-        {Platform.OS === "ios" && <StatusBar barStyle="dark-content" />}
-        <NavigationContainer>
-          <Stack.Navigator headerMode="none">
-            <Stack.Screen name="LogIn" component={LoginScreen} />
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </View>
+      <StyleProvider style={getTheme(commonColor)}>
+        <View style={styles.container}>
+          {Platform.OS === "ios" && <StatusBar barStyle="dark-content" />}
+          <NavigationContainer>
+            <Stack.Navigator headerMode="none">
+              <Stack.Screen name="LogIn" component={LoginScreen} />
+              <Stack.Screen name="Root" component={BottomTabNavigator} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </View>
+      </StyleProvider>
     );
   }
 }
