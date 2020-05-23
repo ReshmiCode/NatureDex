@@ -112,21 +112,22 @@ export default function LogScreen(props) {
       console.log(E);
     }
   };
+  
 
   return (
     <Container>
       <Content padder>
         <Body>
-          <Title style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>
+          <Title style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10, textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5}}>
             Identify a plant by a picture!
           </Title>
-          <Text>Please make sure the plant is centered in the photo.</Text>
-          <Image source={plants} style={{ height: 250, width: 250, flex: 1 }} />
+          <Text style={{ fontSize: 14, marginHorizontal: 50, color: '#fff', textAlign: 'center' ,textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5}}>Please make sure the plant is centered in the photo.</Text>
+          <Image source={plants} style={{ height: 250, width: 250, flex: 1, marginVertical: 20}} />
           <Button info style={styles.button} onPress={takeImage}>
-            <Text> Take Photo </Text>
+            <Title style={{textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5}}> Take Photo </Title>
           </Button>
           <Button info style={styles.button} onPress={pickImage}>
-            <Text> Choose From Camera Roll </Text>
+            <Title style={{textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5}}> Choose From Camera Roll </Title>
           </Button>
           {image && (
             <React.Fragment>
@@ -135,7 +136,7 @@ export default function LogScreen(props) {
                 style={{ width: 300, height: 300 }}
               />
               <Button info style={styles.button} onPress={addPlant}>
-                <Text> Submit </Text>
+                <Title style={{textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5}}> Submit </Title>
               </Button>
             </React.Fragment>
           )}
@@ -143,4 +144,5 @@ export default function LogScreen(props) {
       </Content>
     </Container>
   );
+  
 }
