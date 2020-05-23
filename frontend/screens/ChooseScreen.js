@@ -9,8 +9,7 @@ export default function ChooseScreen(props) {
   const [choices, setChoices] = useState(false);
 
   const addPlant = async (plantData) => {
-    console.log("add " + plantData.plant_name);
-    /*try {
+    try {
       const user = await axios.get(
         `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${GLOBAL.id}`
       );
@@ -19,7 +18,7 @@ export default function ChooseScreen(props) {
         "https://backyardhacks2020.wl.r.appspot.com/api/v1/plants",
         {
           userID: GLOBAL.id,
-          image: plantData.images[0].url,
+          image: data.images[0].url,
           description: plantData,
         }
       );
@@ -32,7 +31,8 @@ export default function ChooseScreen(props) {
       );
     } catch (err) {
       console.log(err);
-    }*/
+    }
+    props.navigation.popToTop();
   };
 
   const results = () => {

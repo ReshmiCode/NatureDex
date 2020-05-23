@@ -58,7 +58,7 @@ export default function Plant(props) {
                 textShadowRadius: 5,
               }}
             >
-              {props.plant.description[0]}
+              {props.plant.description.plant_name}
             </Title>
           </Body>
         </CardItem>

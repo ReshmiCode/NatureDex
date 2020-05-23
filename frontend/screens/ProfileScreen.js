@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FlatList } from "react-native";
-import { Container } from "native-base";
+import { Container, Text } from "native-base";
 import { RefreshControl } from "react-native";
 
 import Plant from "../components/Plant";
@@ -27,6 +27,7 @@ export default function ProfileScreen(props) {
 
   return (
     <Container style={{ padding: 10 }}>
+      {!loading && <Text>You have found {plants.length} plants!</Text>}
       <FlatList
         data={plants}
         renderItem={(plant) => (
