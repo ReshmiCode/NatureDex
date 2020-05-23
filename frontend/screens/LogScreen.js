@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Image } from "react-native";
-import {
-  Container,
-  Body,
-  Button,
-  Content,
-  Header,
-  Title,
-  Text,
-} from "native-base";
+import { Container, Body, Button, Content, Title, Text } from "native-base";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
@@ -65,7 +57,6 @@ export default function LogScreen() {
   };
 
   const addPlant = async () => {
-
     //TODO: Get plant info here
     // const data = {
     //   api_key: "",
@@ -74,7 +65,7 @@ export default function LogScreen() {
     //   plant_language: "en",
     //   plant_details: ["common_names", "url", "name_authority","wiki_description", "taxonomy","synonyms"]
     // };
-    
+
     // fetch('https://api.plant.id/v2/identify', {
     //   method: 'POST',
     //   headers: {
@@ -93,40 +84,43 @@ export default function LogScreen() {
     GLOBAL.userID = "112522383689004928445";
 
     axios
-    .get(`https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${GLOBAL.userID}`)
-    .then((response) => {
-      console.log("GETTED");
-      const newPlants = response.data.data[0].plants;
-      axios
-        .post("https://backyardhacks2020.wl.r.appspot.com/api/v1/plants", {
-          userID: GLOBAL.userID,
-          image: "Sample Image",
-          description: ["Sample Description"]
-        })
-        .then(function (response) {
-          console.log("ADDED");
-          newPlants.push(response.data.data._id);
-          axios
-            .patch(`https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${GLOBAL.userID}`, {
-              plants: newPlants,
-            })
-            .then(function (response) {
-              console.log("PATCHED");
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        })
-        .catch(function (error) {
-          console.log("Error in post", error);
-        });
-    })
-    .then(function (response) {
-    })
-    .catch(function (error) {
-      console.log("Error in get", error);
-    });
-  
+      .get(
+        `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${GLOBAL.userID}`
+      )
+      .then((response) => {
+        console.log("GETTED");
+        const newPlants = response.data.data[0].plants;
+        axios
+          .post("https://backyardhacks2020.wl.r.appspot.com/api/v1/plants", {
+            userID: GLOBAL.userID,
+            image: "Sample Image",
+            description: ["Sample Description"],
+          })
+          .then(function (response) {
+            console.log("ADDED");
+            newPlants.push(response.data.data._id);
+            axios
+              .patch(
+                `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${GLOBAL.userID}`,
+                {
+                  plants: newPlants,
+                }
+              )
+              .then(function (response) {
+                console.log("PATCHED");
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          })
+          .catch(function (error) {
+            console.log("Error in post", error);
+          });
+      })
+      .then(function (response) {})
+      .catch(function (error) {
+        console.log("Error in get", error);
+      });
   };
 
   const takeImage = async () => {

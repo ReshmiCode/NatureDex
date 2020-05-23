@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Body, Content, Header, Title, Text } from "native-base";
+import { Container, Content, Text } from "native-base";
 
 import Plant from "../components/Plant";
 
@@ -10,11 +10,9 @@ export default function ProfileScreen() {
   const [plants, setPlants] = useState([]);
 
   useEffect(() => {
-    GLOBAL.userID = "112522383689004928445";
-
     const fetchData = async () => {
       const result = await axios(
-        `https://backyardhacks2020.wl.r.appspot.com/api/v1/plants/user/${GLOBAL.userID}`
+        `https://backyardhacks2020.wl.r.appspot.com/api/v1/plants/user/${GLOBAL.id}`
       );
       setPlants(result.data.data);
     };
