@@ -60,6 +60,10 @@ export default function LogScreen() {
     }
   };
 
+  const addPlant = async () => {
+    console.log(image);
+  };
+
   const takeImage = async () => {
     try {
       await getCameraPermission();
@@ -84,7 +88,7 @@ export default function LogScreen() {
             Identify a plant by a picture!
           </Title>
           <Text>Please make sure the plant is centered in the photo.</Text>
-          <Image source={plants} style={{ height: 300, width: 300, flex: 1 }} />
+          <Image source={plants} style={{ height: 250, width: 250, flex: 1 }} />
           <Button info style={styles.button} onPress={takeImage}>
             <Text> Take Photo </Text>
           </Button>
@@ -97,6 +101,9 @@ export default function LogScreen() {
               style={{ width: 200, height: 200 }}
             />
           )}
+          <Button info style={styles.button} onPress={addPlant}>
+            <Text> Submit </Text>
+          </Button>
         </Body>
       </Content>
     </Container>

@@ -1,20 +1,23 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-    image: {
+    googleID : {
         type: String,
-        trim: true,
-        required: [true, 'Please add a url']
+        required: [true, 'Add a googleID']
     },
 
-    info: {
-        type: [String]
+    profilePic: {
+        type: String
     },
 
-    dateAdded: {
-        type: Date,
-        default: Date.now
-    }
+    userName: {
+        type: String,
+        required: [true, 'Add a username']
+    },
+    
+    plants: [
+        mongoose.Schema.Types.ObjectId
+    ]
 });
 
 module.exports = mongoose.model('User', UserSchema);

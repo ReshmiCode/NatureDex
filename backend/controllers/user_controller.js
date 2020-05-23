@@ -18,9 +18,8 @@ exports.getUsers = async (req, res, next) => {
 }
 
 exports.getUser = async (req, res, next) => {
-    
     try {
-        const user = await User.findById(req.params.id);
+        const user = await User.find({}).where({ "googleID": req.params.id});
 
         return res.status(200).json({
             success: true,
@@ -59,6 +58,79 @@ exports.addUser = async (req, res, next) => {
                 error: 'Server Error'
             });
         }
+    } 
+}
+
+exports.deleteUser = async (req, res, next) => {
+    try {
+        const user = await User.find({}).where({ "googleID": req.params.id});
+        if(user.length == 0){
+            return res.status(404).json({
+                success: false,
+                error: 'No user found'
+            });
+        }
+
+        await User.remove({googleID : req.params.id});
+
+        return res.status(200).json({
+            success: true,
+            data: user
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: 'Server Error'
+        });
     }
-    
+}
+
+exports.updateUser = async (req, res, next) => {
+    try {
+
+        const user = await User.find({}).where({ "googleID": req.params.id});
+
+        if(!user){
+            return res.status(404).json({
+                success: false,
+                error: 'No user found'
+            });
+        }
+
+        if(req.body.profilePic != null) {
+            await User.find({}).where({ "googleID": req.params.id}).replaceOne({}, { 
+                $set: { 
+                    profilePic: req.body.profilePic
+                } 
+            });
+        }
+
+        if(req.body.userName != null) {
+            await User.find({}).where({ "googleID": req.params.id}).replaceOne({}, { 
+                $set: { 
+                    userName: req.body.userName
+                } 
+            });
+        }
+        
+        if(req.body.plants != null) {
+            await User.find({}).where({ "googleID": req.params.id}).replaceOne({}, { 
+                $set: { 
+                    plants: req.body.plants
+                } 
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            data: user
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: 'Server Error'
+        });
+    }
 }

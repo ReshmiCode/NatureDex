@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Container, Body, Content, Header, Title, Text } from "native-base";
+import { Container, Body, Content, Text } from "native-base";
 
 export default function ProfileScreen() {
   return (
