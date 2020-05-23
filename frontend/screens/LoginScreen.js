@@ -36,7 +36,7 @@ var styles = {
     fontFamily: "PlayfairDisplay",
   },
   loginDesc: {
-    flex: 1.7,
+    flex: 1.5,
     textAlign: "center",
     color: "#0c4210",
     fontSize: 30,
@@ -54,6 +54,7 @@ var styles = {
     justifyContent: "center",
   },
   GoogleStyle: {
+    flex: .2,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#4285F4",
@@ -61,6 +62,7 @@ var styles = {
     borderColor: "#4285F4",
     borderRadius: 5,
     margin: 5,
+    padding:10
   },
 };
 
@@ -162,7 +164,6 @@ export default function SwiperComponent(props) {
       <View style={[styles.slides, { backgroundColor: "#B4CDD0" }]}>
         <Image source={naturedexTitle} style={styles.natureDex}></Image>
         <Image source={mag} style={styles.icon}></Image>
-        <Text style={styles.loginDesc}>Go capture them all!</Text>
         <Button style={styles.GoogleStyle} onPress={signInWithGoogle}>
           <Thumbnail
             small
@@ -173,6 +174,7 @@ export default function SwiperComponent(props) {
           />
           <Text style={styles.TextStyle}>Sign In With Google</Text>
         </Button>
+        <Text style={styles.loginDesc}>Go capture them all!</Text>
       </View>
     </Swiper>
   );
