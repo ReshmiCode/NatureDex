@@ -120,9 +120,7 @@ export default function SwiperComponent(props) {
             .catch(function (error) {
               console.log(error);
             });
-          console.log("User Created");
         } else {
-          console.log("User already exists");
           GLOBAL.userID = response.data.data[0]._id;
         }
       })
@@ -141,18 +139,13 @@ export default function SwiperComponent(props) {
       });
 
       if (type === "success") {
-        console.log("LoginScreen.js.js 21 | ", user.givenName);
-
         GLOBAL.id = user.id;
         GLOBAL.username = user.givenName;
         GLOBAL.profilePic = user.photoUrl;
         GLOBAL.accessToken = accessToken;
 
         newProfile();
-
-        //TODO: Navigate to profile here
-        //props.navigation.navigate("ProfileScreen");
-
+        props.navigation.navigate("Root");
         return accessToken;
       } else {
         return { cancelled: true };
