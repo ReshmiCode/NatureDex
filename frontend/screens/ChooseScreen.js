@@ -1,26 +1,15 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
+import { Container, Button, Content, Text, Title, Body } from "native-base";
 import { Image } from "react-native";
-import {
-  Container,
-  View,
-  Button,
-  DeckSwiper,
-  Card,
-  CardItem,
-  Text,
-  Left,
-  Body,
-  Icon,
-} from "native-base";
+import CardSwiper from "../components/CardSwiper";
 const axios = require("axios").default;
 
 export default function ChooseScreen(props) {
   const { data } = props.route.params;
-  const swiper = useRef(null);
+  const [choices, setChoices] = useState(false);
 
   const addPlant = async () => {
-    const correctSug = swiper.current._root.state.selectedItem;
-    console.log(correctSug);
+    console.log("hewwo");
 
     /*try {
       const user = await axios.get(
@@ -47,103 +36,30 @@ export default function ChooseScreen(props) {
     }*/
   };
 
-  return (
-    <Container>
-      <View>
+  const results = () => {
+    const plant = data.suggestions[0];
+    return (
+      <Content padder>
         <Body>
-          <Text>Select the plant you found:</Text>
+          <Title>Top Result:</Title>
+          <Text>{plant.plant_name}</Text>
+          <Image
+            source={{
+              uri: plant.plant_details.wiki_image
+                ? plant.plant_details.wiki_image.value
+                : plant.images[0].url,
+            }}
+            style={{ width: 300, height: 300, borderRadius: 10, margin: 20 }}
+          />
+          <Button onPress={() => setChoices(true)}>
+            <Text>See Other Choices</Text>
+          </Button>
         </Body>
-        <DeckSwiper
-          ref={swiper}
-          dataSource={data.suggestions}
-          renderEmpty={() => (
-            <View style={{ alignSelf: "center" }}>
-              <Text>Please retake the photo and try again.</Text>
-              <Button onPress={() => props.navigation.navigate("AddImage")}>
-                <Text>Go Back</Text>
-              </Button>
-            </View>
-          )}
-          renderItem={(item) => <DeckCard item={item} />}
-          onSwipeRight={addPlant}
-          onSwipeLeft={() => console.log("left")}
-        />
-      </View>
-      <View
-        style={{
-          flexDirection: "row",
-          flex: 1,
-          position: "absolute",
-          bottom: 50,
-          left: 0,
-          right: 0,
-          justifyContent: "space-between",
-          padding: 15,
-        }}
-      >
-        <Button
-          iconLeft
-          onPress={() => {
-            swiper.current._root.swipeLeft();
-            swiper.current.props.onSwipeLeft();
-          }}
-        >
-          <Icon name="arrow-back" />
-          <Text>Not This One</Text>
-        </Button>
-        <Button
-          iconRight
-          onPress={() => {
-            swiper.current._root.swipeRight();
-            swiper.current.props.onSwipeRight();
-          }}
-        >
-          <Icon name="arrow-forward" />
-          <Text>Select</Text>
-        </Button>
-      </View>
-      <View
-        style={{
-          flexDirection: "row",
-          flex: 1,
-          position: "absolute",
-          bottom: 20,
-          left: 0,
-          right: 0,
-          marginTop: 15,
-          alignSelf: "center",
-        }}
-      >
-        <Button onPress={() => props.navigation.navigate("AddImage")}>
-          <Text>None of These</Text>
-        </Button>
-      </View>
-    </Container>
+      </Content>
+    );
+  };
+
+  return (
+    <Container>{choices ? <CardSwiper data={data} /> : results()}</Container>
   );
 }
-
-const DeckCard = (item) => {
-  const plant = item.item;
-  return (
-    <Card style={{ elevation: 3 }}>
-      <CardItem>
-        <Left>
-          <Body>
-            <Text>{plant.plant_name}</Text>
-            <Text note>Confidence: {plant.probability.toFixed(2) * 100}%</Text>
-          </Body>
-        </Left>
-      </CardItem>
-      <CardItem cardBody>
-        <Image
-          style={{ height: 300, flex: 1 }}
-          source={{
-            uri: plant.plant_details.wiki_image
-              ? plant.plant_details.wiki_image.value
-              : "https://classifieds.skyhinews.com/public/images/no-photo.png",
-          }}
-        />
-      </CardItem>
-    </Card>
-  );
-};
