@@ -26,11 +26,7 @@ var styles = {
 export default function LogScreen() {
   let [image, setImage] = useState(null);
 
-  useEffect(() => {
-    getPermissionAsync();
-  }, []);
-
-  const getPermissionAsync = async () => {
+  const getPickerPermission = async () => {
     if (Constants.platform.ios) {
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
       if (status !== "granted") {
@@ -39,12 +35,37 @@ export default function LogScreen() {
     }
   };
 
+  const getCameraPermission = async () => {
+    if (Constants.platform.ios) {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA);
+      if (status !== "granted") {
+        alert("Sorry, we need camera permissions to make this work!");
+      }
+    }
+  };
+
   const pickImage = async () => {
     try {
+      await getPickerPermission();
       let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
         allowsEditing: true,
-        aspect: [4, 3],
+        base64: true,
+        quality: 1,
+      });
+      if (!result.cancelled) {
+        setImage(result.uri);
+      }
+    } catch (E) {
+      console.log(E);
+    }
+  };
+
+  const takeImage = async () => {
+    try {
+      await getCameraPermission();
+      let result = await ImagePicker.launchCameraAsync({
+        allowsEditing: true,
+        base64: true,
         quality: 1,
       });
       if (!result.cancelled) {
@@ -69,7 +90,7 @@ export default function LogScreen() {
           </Title>
           <Text>Please make sure the plant is centered in the photo.</Text>
           <Image source={plants} style={{ height: 300, width: 300, flex: 1 }} />
-          <Button info style={styles.button}>
+          <Button info style={styles.button} onPress={takeImage}>
             <Text> Take Photo </Text>
           </Button>
           <Button info style={styles.button} onPress={pickImage}>
