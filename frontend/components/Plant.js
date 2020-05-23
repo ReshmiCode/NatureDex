@@ -1,30 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { View, Image, StyleSheet } from 'react-native';
-import { Container, Body, Content, Header, Title, Text, Button  , Card, CardItem} from "native-base";
+import { View, Image, StyleSheet , TouchableOpacity , Linking} from 'react-native';
+import { Container, Body, Content, Header, Title, Text , Card, CardItem} from "native-base";
 
-export default function Plant() {
+export default function Plant(props) {
+    const image = props.image;
+
     return(
         <Container>
         <Content>
             <Card>
                 <CardItem header>
-                        <Text>Rose</Text>
+                    <Text>{props.title}</Text>
                 </CardItem>
                 <CardItem>
-                    <Image
-                        source={{
-                        uri: 'https://d384u2mq2suvbq.cloudfront.net/public/spree/products/1693/original/Red-Rose-Fragrance-Oil.jpg',
-                        }}
-                    />
+                    <Text>Scientific Name: {props.name}</Text> 
                 </CardItem>
                 <CardItem>
-                    <Text>Scientific Name: Rosa</Text> 
+                    <Text>First Seen On: {props.date}</Text>                        
                 </CardItem>
                 <CardItem>
-                    <Text>First Seen On: Date</Text>                        
-                </CardItem>
-                <CardItem>
-                    <Button title="Know More"/>
+                    <TouchableOpacity onPress={() => Linking.openURL(props.link)}>
+                        <Text> Know More </Text>
+                    </TouchableOpacity>
                 </CardItem>
            </Card>
         </Content>
