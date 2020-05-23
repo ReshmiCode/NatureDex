@@ -56,7 +56,6 @@ export default function ChooseScreen(props) {
         <DeckSwiper
           ref={swiper}
           dataSource={data.suggestions}
-          looping={false}
           renderEmpty={() => (
             <View style={{ alignSelf: "center" }}>
               <Text>Please retake the photo and try again.</Text>
@@ -101,6 +100,22 @@ export default function ChooseScreen(props) {
         >
           <Icon name="arrow-forward" />
           <Text>Select</Text>
+        </Button>
+      </View>
+      <View
+        style={{
+          flexDirection: "row",
+          flex: 1,
+          position: "absolute",
+          bottom: 20,
+          left: 0,
+          right: 0,
+          marginTop: 15,
+          alignSelf: "center",
+        }}
+      >
+        <Button onPress={() => props.navigation.navigate("AddImage")}>
+          <Text>None of These</Text>
         </Button>
       </View>
     </Container>
