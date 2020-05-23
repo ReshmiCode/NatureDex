@@ -13,7 +13,7 @@ router
     .delete(deletePlant);
 
 router
-    .route('/:userid')
+    .route('/user/:id')
     .get(getUserPlant)
 
     
