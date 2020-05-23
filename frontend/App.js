@@ -17,6 +17,8 @@ export default function App(props) {
 
   const isLoadingComplete = useCachedResources();
 
+  const isLoadingComplete = useCachedResources();
+
   if (!isLoadingComplete) {
     return null;
   } else {
