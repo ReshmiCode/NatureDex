@@ -60,6 +60,7 @@ var styles = {
     color: "#0c4210",
     fontSize: 30,
     fontWeight: "bold",
+    fontFamily: "PlayfairDisplay",
   },
   icon: {
     flex: 1.7,
