@@ -65,10 +65,25 @@ export default function LogScreen() {
       //plant_language: "en",
       api_key: PLANT_API_KEY,
     };
+    const headers = {
+      "Api-key": PLANT_API_KEY,
+    };
     let plantData;
 
+    axios
+      .post(`https://api.plant.id/v2/identify`, {
+        params: data,
+        headers,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+
     try {
-      console.log(PLANT_API_KEY);
+      /*console.log(PLANT_API_KEY);
       plantData = await axios.post(`https://api.plant.id/v2/identify`, {
         params: data,
       });
@@ -92,7 +107,7 @@ export default function LogScreen() {
         {
           plants: newPlants,
         }
-      );
+      );*/
     } catch (err) {
       console.log(err);
     }
