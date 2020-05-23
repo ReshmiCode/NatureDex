@@ -19,8 +19,6 @@ export default function ProfileScreen() {
     fetchData();
   }, []);
 
-  //TODO: This is showing only one plant?
-
   return (
     <Container>
       <Content padder>
