@@ -59,22 +59,16 @@ export default function LogScreen() {
 
   const addPlant = async () => {
     const data = {
-      images: ["hi"],
+      images: [imageBase],
       //modifiers: ["crops_fast", "similar_images"],
       //plant_details: ["common_names", "taxonomy", "url", "wiki_description"],
       //plant_language: "en",
       api_key: PLANT_API_KEY,
     };
-    const headers = {
-      "Api-key": PLANT_API_KEY,
-    };
     let plantData;
 
     axios
-      .post(`https://api.plant.id/v2/identify`, {
-        params: data,
-        headers,
-      })
+      .post(`https://api.plant.id/v2/identify`, data)
       .then((response) => {
         console.log(response);
       })
