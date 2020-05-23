@@ -24,7 +24,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: "Get Started",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-code-working" />
+            <TabBarIcon focused={focused} name="camera" />
           ),
         }}
       />
@@ -34,7 +34,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: "Resources",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-book" />
+            <TabBarIcon focused={focused} name="tree" />
           ),
         }}
       />
