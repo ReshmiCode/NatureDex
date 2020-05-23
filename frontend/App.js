@@ -24,7 +24,7 @@ export default function App(props) {
           {Platform.OS === "ios" && <StatusBar barStyle="dark-content" />}
           <NavigationContainer>
             <Stack.Navigator headerMode="none">
-              <Stack.Screen name="LogIn" component={LoginScreen} />
+              {/*<Stack.Screen name="LogIn" component={LoginScreen} />*/}
               <Stack.Screen name="Root" component={BottomTabNavigator} />
             </Stack.Navigator>
           </NavigationContainer>
