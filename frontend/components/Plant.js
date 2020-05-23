@@ -3,8 +3,6 @@ import { View, Image, StyleSheet , TouchableOpacity , Linking} from 'react-nativ
 import { Container, Body, Content, Header, Title, Text , Card, CardItem} from "native-base";
 
 export default function Plant(props) {
-    const image = props.image;
-
     return(
         <Container>
         <Content>
@@ -12,6 +10,11 @@ export default function Plant(props) {
                 <CardItem header>
                     <Text>{props.title}</Text>
                 </CardItem>
+                <Image
+                    source={{
+                    uri: props.image,
+                    }}
+                />
                 <CardItem>
                     <Text>Scientific Name: {props.name}</Text> 
                 </CardItem>
