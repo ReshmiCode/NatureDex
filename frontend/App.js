@@ -39,7 +39,11 @@ export default function App(props) {
                   title: "NatureDex",
                   headerTitleAlign: "center",
                   headerLeft: null,
+                  headerTitleStyle: {
+                    fontSize: 32, color: "#fff", textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5
+                  },
                   headerStyle: {
+                    
                     backgroundColor: "#B4CDD1",
                   },
                 }}
