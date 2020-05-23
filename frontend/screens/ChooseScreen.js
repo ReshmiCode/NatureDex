@@ -8,9 +8,8 @@ export default function ChooseScreen(props) {
   const { data } = props.route.params;
   const [choices, setChoices] = useState(false);
 
-  const addPlant = async () => {
-    console.log("hewwo");
-
+  const addPlant = async (plantData) => {
+    console.log("add " + plantData.plant_name);
     /*try {
       const user = await axios.get(
         `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${GLOBAL.id}`
@@ -21,7 +20,7 @@ export default function ChooseScreen(props) {
         {
           userID: GLOBAL.id,
           image: plantData.images[0].url,
-          description: [plantData.suggestions[0].plant_name],
+          description: plantData,
         }
       );
       newPlants.push(newPlant.data.data._id);
@@ -37,6 +36,16 @@ export default function ChooseScreen(props) {
   };
 
   const results = () => {
+    if (!data.suggestions) {
+      return (
+        <Content padder>
+          <Text>No results found. Please retake the photo and try again.</Text>
+          <Button onPress={() => props.navigation.navigate("AddImage")}>
+            <Text>Go Back</Text>
+          </Button>
+        </Content>
+      );
+    }
     const plant = data.suggestions[0];
     return (
       <Content padder>
@@ -51,6 +60,9 @@ export default function ChooseScreen(props) {
             }}
             style={{ width: 300, height: 300, borderRadius: 10, margin: 20 }}
           />
+          <Button onPress={() => addPlant(plant)}>
+            <Text>Select</Text>
+          </Button>
           <Button onPress={() => setChoices(true)}>
             <Text style={{color: "#fff"}} >See Other Choices</Text>
           </Button>
@@ -60,6 +72,8 @@ export default function ChooseScreen(props) {
   };
 
   return (
-    <Container>{choices ? <CardSwiper data={data} /> : results()}</Container>
+    <Container>
+      {choices ? <CardSwiper data={data} addPlant={addPlant} /> : results()}
+    </Container>
   );
 }

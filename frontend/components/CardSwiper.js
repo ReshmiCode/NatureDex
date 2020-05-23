@@ -5,11 +5,6 @@ import DeckCard from "./DeckCard";
 export default CardSwiper = (props) => {
   const swiper = useRef(null);
 
-  const addPlant = async () => {
-    const correctSug = swiper.current._root.state.selectedItem;
-    console.log(correctSug);
-  };
-
   return (
     <React.Fragment>
       <View style={{ padding: 10 }}>
@@ -28,7 +23,9 @@ export default CardSwiper = (props) => {
             </View>
           )}
           renderItem={(item) => <DeckCard item={item} />}
-          onSwipeRight={addPlant}
+          onSwipeRight={() =>
+            props.addPlant(swiper.current._root.state.selectedItem)
+          }
           onSwipeLeft={() => console.log("left")}
         />
       </View>

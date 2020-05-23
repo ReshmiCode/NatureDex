@@ -36,7 +36,6 @@ export default function ProfileScreen(props) {
         refreshControl={
           <RefreshControl refreshing={loading} onRefresh={onRefresh} />
         }
-        numColumns={2}
       />
     </Container>
   );
