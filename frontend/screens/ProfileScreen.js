@@ -27,9 +27,10 @@ export default function ProfileScreen(props) {
 
   return (
     <Container style={{ padding: 10 }}>
-      {!loading && <Text>You have found {plants.length} plants!</Text>}
       <FlatList
         data={plants}
+        inverted={true}
+        showsVerticalScrollIndicator={false}
         renderItem={(plant) => (
           <Plant plant={plant.item} nav={props.navigation} />
         )}
