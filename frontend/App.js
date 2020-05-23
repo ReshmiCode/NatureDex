@@ -10,6 +10,9 @@ import { StyleProvider } from "native-base";
 import getTheme from "./native-base-theme/components";
 import commonColor from "./native-base-theme/variables/commonColor";
 
+//import { Apploading, Font } from "expo";
+//import PlayfairDisplay from "./assets/fonts/PlayfairDisplay.ttf";
+
 const Stack = createStackNavigator();
 
 export default function App(props) {

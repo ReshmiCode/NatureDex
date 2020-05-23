@@ -52,6 +52,7 @@ var styles = {
     fontWeight: "bold",
     padding: 8,
     paddingTop: 10,
+    fontFamily: "PlayfairDisplay",
   },
   loginDesc: {
     flex: 1.7,
@@ -132,8 +133,7 @@ export default function SwiperComponent(props) {
   };
 
   const signInWithGoogle = async () => {
-    props.navigation.navigate("Root");
-    /*try {
+    try {
       const { type, accessToken, user } = await Google.logInAsync({
         iosClientId: IOS_CLIENT_ID,
         androidClientId: ANDROID_CLIENT_ID,
@@ -150,14 +150,17 @@ export default function SwiperComponent(props) {
 
         newProfile();
 
+        //TODO: Navigate to profile here
+        //props.navigation.navigate("ProfileScreen");
+
         return accessToken;
       } else {
         return { cancelled: true };
       }
     } catch (e) {
-      console.log("LoginScreen.js.js 30 | Error with login", e);
+      console.log("Error with login", e);
       return { error: true };
-    }*/
+    }
   };
 
   return (

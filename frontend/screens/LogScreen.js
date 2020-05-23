@@ -14,6 +14,8 @@ import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
 import plants from "../assets/images/plantoutlines.png";
 
+const axios = require("axios").default;
+
 var styles = {
   button: {
     width: 300,
@@ -25,6 +27,7 @@ var styles = {
 
 export default function LogScreen() {
   let [image, setImage] = useState(null);
+  let [imageBase, setImageBase] = useState(null);
 
   const getPickerPermission = async () => {
     if (Constants.platform.ios) {
@@ -54,6 +57,7 @@ export default function LogScreen() {
       });
       if (!result.cancelled) {
         setImage(result.uri);
+        setImageBase(result.base64);
       }
     } catch (E) {
       console.log(E);
@@ -61,7 +65,68 @@ export default function LogScreen() {
   };
 
   const addPlant = async () => {
-    console.log(image);
+
+    //TODO: Get plant info here
+    // const data = {
+    //   api_key: "",
+    //   images: imageBase,
+    //   modifiers: ["crops_fast", "similar_images"],
+    //   plant_language: "en",
+    //   plant_details: ["common_names", "url", "name_authority","wiki_description", "taxonomy","synonyms"]
+    // };
+    
+    // fetch('https://api.plant.id/v2/identify', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+    //   console.log('Success:', data);
+    // })
+    // .catch((error) => {
+    //   console.error('Error:', error);
+    // });
+
+    GLOBAL.userID = "112522383689004928445";
+
+    axios
+    .get(`https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${GLOBAL.userID}`)
+    .then((response) => {
+      console.log("GETTED");
+      const newPlants = response.data.data[0].plants;
+      axios
+        .post("https://backyardhacks2020.wl.r.appspot.com/api/v1/plants", {
+          userID: GLOBAL.userID,
+          image: "Sample Image",
+          description: ["Sample Description"]
+        })
+        .then(function (response) {
+          console.log("ADDED");
+          newPlants.push(response.data.data._id);
+          axios
+            .patch(`https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${GLOBAL.userID}`, {
+              plants: newPlants,
+            })
+            .then(function (response) {
+              console.log("PATCHED");
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        })
+        .catch(function (error) {
+          console.log("Error in post", error);
+        });
+    })
+    .then(function (response) {
+    })
+    .catch(function (error) {
+      console.log("Error in get", error);
+    });
+  
   };
 
   const takeImage = async () => {
@@ -74,6 +139,7 @@ export default function LogScreen() {
       });
       if (!result.cancelled) {
         setImage(result.uri);
+        setImageBase(result.base64);
       }
     } catch (E) {
       console.log(E);

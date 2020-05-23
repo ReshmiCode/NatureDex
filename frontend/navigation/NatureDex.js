@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-
+import { Text } from "native-base";
 import ProfileScreen from "../screens/ProfileScreen";
 import PlantScreen from "../screens/PlantScreen";
 
