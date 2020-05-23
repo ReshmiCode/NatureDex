@@ -2,8 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 
 import TabBarIcon from "../components/TabBarIcon";
-import LogScreen from "../screens/LogScreen";
-import ProfileScreen from "../screens/ProfileScreen";
+import AddPlant from "./AddPlant";
 import NatureDex from "./NatureDex";
 
 const BottomTab = createBottomTabNavigator();
@@ -21,7 +20,7 @@ export default function BottomTabNavigator({ navigation, route }) {
     >
       <BottomTab.Screen
         name="Home"
-        component={LogScreen}
+        component={AddPlant}
         options={{
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="camera" />

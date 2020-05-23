@@ -18,7 +18,7 @@ var styles = {
   },
 };
 
-export default function LogScreen() {
+export default function LogScreen(props) {
   let [image, setImage] = useState(null);
   let [imageBase, setImageBase] = useState(null);
 
@@ -60,27 +60,12 @@ export default function LogScreen() {
   const addPlant = async () => {
     const data = {
       images: ["data:image/jpeg;base64," + imageBase],
-      //modifiers: ["crops_fast", "similar_images"],
-      //plant_details: ["common_names", "taxonomy", "url", "wiki_description"],
-      //plant_language: "en",
+      modifiers: ["crops_fast", "similar_images"],
+      plant_details: ["common_names", "taxonomy", "url", "wiki_description"],
+      plant_language: "en",
       api_key: PLANT_API_KEY,
     };
     let plantData;
-
-    /*axios
-      .post(`https://api.plant.id/v2/identify`, data)
-      .then((response) => {
-        var propValue;
-        for (var propName in response.data) {
-          propValue = response.data[propName];
-          console.log(propName, propValue);
-        }
-        //console.log(response.data.plant_name);
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });*/
-
     try {
       const response = await axios.post(
         `https://api.plant.id/v2/identify`,
