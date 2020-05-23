@@ -17,7 +17,31 @@ exports.getPlants = async (req, res, next) => {
     }
 }
 exports.addPlant = async (req, res, next) => {    
-    return "ToDo";
+    try {
+        const plant = await Plant.create(req.body);
+
+        return res.status(201).json({
+            success: true,
+            data: plant
+        });
+    } catch (error) {
+        if(error.name === 'ValidationError') {
+            const messages = Object.values(error.errors).map(val => val.message);
+        
+            return res.status(400).json({
+                success: false,
+                error: messages
+            });
+
+        } 
+        
+        else {
+            return res.status(500).json({
+                success: false,
+                error: 'Server Error'
+            });
+        }
+    }
 }
 
 exports.getPlant = async (req, res, next) => {    

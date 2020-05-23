@@ -10,7 +10,7 @@ const PlantSchema = new mongoose.Schema({
         required: [true, 'Add an image']
     },
     description: {
-        type: String,
+        type: [String],
         required: [true, 'Add an info']
     },
     date_added: {
