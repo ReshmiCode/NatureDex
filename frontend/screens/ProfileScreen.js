@@ -1,34 +1,43 @@
 import React, { useState, useEffect } from "react";
-import { Container, Content, Text } from "native-base";
+import { FlatList } from "react-native";
+import { Container } from "native-base";
+import { RefreshControl } from "react-native";
 
 import Plant from "../components/Plant";
 
 const axios = require("axios").default;
 GLOBAL = require("../global");
 
-export default function ProfileScreen() {
+export default function ProfileScreen(props) {
   const [plants, setPlants] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(
-        `https://backyardhacks2020.wl.r.appspot.com/api/v1/plants/user/${GLOBAL.id}`
-      );
-      setPlants(result.data.data);
-    };
-    fetchData();
+    onRefresh();
   }, []);
 
+  const onRefresh = async () => {
+    setLoading(true);
+    const result = await axios(
+      `https://backyardhacks2020.wl.r.appspot.com/api/v1/plants/user/${GLOBAL.id}`
+    );
+    setPlants(result.data.data);
+    setLoading(false);
+  };
+
   return (
-    <Container>
-      <Content padder>
-        {plants.length == 0 ? (
-          <Text>You don't haven't seen any flowers, get looking!</Text>
-        ) : (
-          plants.map((plant) => <Plant plant={plant} key={plant._id} />)
+    <Container style={{ padding: 10 }}>
+      <FlatList
+        data={plants}
+        renderItem={(plant) => (
+          <Plant plant={plant.item} nav={props.navigation} />
         )}
-      </Content>
+        keyExtractor={(plant) => plant._id}
+        refreshControl={
+          <RefreshControl refreshing={loading} onRefresh={onRefresh} />
+        }
+        numColumns={2}
+      />
     </Container>
   );
 }
-// props.navigation.navigate("PlantDetail")

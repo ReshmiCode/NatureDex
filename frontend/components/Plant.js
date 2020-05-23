@@ -1,6 +1,7 @@
 import React from "react";
-import { Image, TouchableOpacity, Linking } from "react-native";
+import { Image } from "react-native";
 import { Text, Card, CardItem } from "native-base";
+import moment from "moment";
 
 export default function Plant(props) {
   return (
@@ -8,23 +9,20 @@ export default function Plant(props) {
       <CardItem>
         <Text>{props.plant.description[0]}</Text>
       </CardItem>
-      <CardItem cardBody>
+      <CardItem
+        cardBody
+        button
+        onPress={() => props.nav.navigate("PlantDetail")}
+      >
         <Image
           source={{
             uri: props.plant.image,
           }}
-          options={{ height: 100, width: 100 }}
+          style={{ height: 100, width: 100 }}
         />
       </CardItem>
       <CardItem>
-        <Text>First Seen On: {props.plant.date_added}</Text>
-      </CardItem>
-      <CardItem>
-        <TouchableOpacity
-          onPress={() => Linking.openURL(props.plant.description[2])}
-        >
-          <Text> More Information </Text>
-        </TouchableOpacity>
+        <Text>{moment(props.plant.date_added).format("l")}</Text>
       </CardItem>
     </Card>
   );
