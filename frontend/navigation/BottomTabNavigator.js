@@ -1,9 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import * as React from "react";
+import React from "react";
 
 import TabBarIcon from "../components/TabBarIcon";
 import LogScreen from "../screens/LogScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import NatureDex from "./NatureDex";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = "Home";
@@ -22,19 +23,17 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Home"
         component={LogScreen}
         options={{
-          title: "Get Started",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-code-working" />
+            <TabBarIcon focused={focused} name="camera" />
           ),
         }}
       />
       <BottomTab.Screen
-        name="Links"
-        component={ProfileScreen}
+        name="Profile"
+        component={NatureDex}
         options={{
-          title: "Resources",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-book" />
+            <TabBarIcon focused={focused} name="tree" />
           ),
         }}
       />

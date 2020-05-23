@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Body, Content, Header, Title, Text } from "native-base";
 
-import Plant from '../components/Plant'; 
+import Plant from "../components/Plant";
 
 const axios = require("axios").default;
 GLOBAL = require("../global");
@@ -25,18 +25,14 @@ export default function ProfileScreen() {
 
   return (
     <Container>
-      <Header>
-        <Body>
-          <Title>Profile</Title>
-        </Body>
-      </Header>
       <Content padder>
-          {plants.length == 0 ? (
-            <Text>You don't haven't seen any flowers, get looking!</Text>
-          ) : (
-            plants.map((plant) => <Plant plant={plant} key={plant._id} />)
-          )}
+        {plants.length == 0 ? (
+          <Text>You don't haven't seen any flowers, get looking!</Text>
+        ) : (
+          plants.map((plant) => <Plant plant={plant} key={plant._id} />)
+        )}
       </Content>
     </Container>
   );
 }
+// props.navigation.navigate("PlantDetail")
