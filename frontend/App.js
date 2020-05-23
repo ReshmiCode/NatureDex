@@ -13,34 +13,37 @@ import commonColor from "./native-base-theme/variables/commonColor";
 const Stack = createStackNavigator();
 
 export default function App(props) {
-  // return(
-  //   <LoginScreen/>
-  // );
-   
-  const isLoadingComplete = useCachedResources();
+    return <LoginScreen />;
 
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
-      <StyleProvider style={getTheme(commonColor)}>
-        <View style={styles.container}>
-          {Platform.OS === "ios" && <StatusBar barStyle="dark-content" />}
-          <NavigationContainer>
-            <Stack.Navigator headerMode="none">
-              {/*<Stack.Screen name="LogIn" component={LoginScreen} />*/}
-              <Stack.Screen name="Root" component={BottomTabNavigator} />
-            </Stack.Navigator>
-          </NavigationContainer>
-        </View>
-      </StyleProvider>
-    );
-  }
+    const isLoadingComplete = useCachedResources();
+
+    if (!isLoadingComplete) {
+        return null;
+    } else {
+        return (
+            <StyleProvider style={getTheme(commonColor)}>
+                <View style={styles.container}>
+                    {Platform.OS === "ios" && (
+                        <StatusBar barStyle="dark-content" />
+                    )}
+                    <NavigationContainer>
+                        <Stack.Navigator headerMode="none">
+                            {/*<Stack.Screen name="LogIn" component={LoginScreen} />*/}
+                            <Stack.Screen
+                                name="Root"
+                                component={BottomTabNavigator}
+                            />
+                        </Stack.Navigator>
+                    </NavigationContainer>
+                </View>
+            </StyleProvider>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+    },
 });
