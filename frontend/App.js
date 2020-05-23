@@ -16,7 +16,7 @@ export default function App(props) {
   // return(
   //   <LoginScreen/>
   // );
-   
+
   const isLoadingComplete = useCachedResources();
 
   if (!isLoadingComplete) {
@@ -27,9 +27,24 @@ export default function App(props) {
         <View style={styles.container}>
           {Platform.OS === "ios" && <StatusBar barStyle="dark-content" />}
           <NavigationContainer>
-            <Stack.Navigator headerMode="none">
-              {/*<Stack.Screen name="LogIn" component={LoginScreen} />*/}
-              <Stack.Screen name="Root" component={BottomTabNavigator} />
+            <Stack.Navigator>
+              <Stack.Screen
+                name="LogIn"
+                options={{ headerShown: false }}
+                component={LoginScreen}
+              />
+              <Stack.Screen
+                name="Root"
+                component={BottomTabNavigator}
+                options={{
+                  title: "NatureDex",
+                  headerTitleAlign: "center",
+                  headerLeft: null,
+                  headerStyle: {
+                    backgroundColor: "#B4CDD1",
+                  },
+                }}
+              />
             </Stack.Navigator>
           </NavigationContainer>
         </View>

@@ -3,7 +3,7 @@ import * as Google from "expo-google-app-auth";
 import { Thumbnail, Button, Text, View } from "native-base";
 import Swiper from "react-native-swiper";
 
-import { ANDROID_CLIENT_ID  , IOS_CLIENT_ID} from '../config';
+import { ANDROID_CLIENT_ID, IOS_CLIENT_ID } from "../config";
 
 var styles = {
   wrapper: {},
@@ -48,24 +48,7 @@ var styles = {
 
 export default function SwiperComponent(props) {
   const signInWithGoogle = async () => {
-    try {
-      const { type, accessToken , user } = await Google.logInAsync({
-        iosClientId: IOS_CLIENT_ID,
-        androidClientId: ANDROID_CLIENT_ID,
-        scopes: ["profile", "email"],
-      });
-
-      if (type === "success") {
-        console.log("LoginScreen.js.js 21 | ", user.givenName);
-
-        return accessToken;
-      } else {
-        return { cancelled: true };
-      }
-    } catch (e) {
-      console.log("LoginScreen.js.js 30 | Error with login", e);
-      return { error: true };
-    }
+    props.navigation.navigate("Root");
   };
 
   return (

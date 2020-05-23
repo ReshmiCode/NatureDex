@@ -78,11 +78,6 @@ export default function LogScreen() {
 
   return (
     <Container>
-      <Header>
-        <Body>
-          <Title>NatureDex</Title>
-        </Body>
-      </Header>
       <Content padder>
         <Body>
           <Title style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10 }}>
