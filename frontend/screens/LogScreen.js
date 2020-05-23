@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { Image } from "react-native";
 import {
   Container,
@@ -9,6 +9,9 @@ import {
   Title,
   Text,
 } from "native-base";
+import * as ImagePicker from "expo-image-picker";
+import Constants from "expo-constants";
+import * as Permissions from "expo-permissions";
 import plants from "../assets/images/plantoutlines.png";
 
 var styles = {
@@ -21,6 +24,37 @@ var styles = {
 };
 
 export default function LogScreen() {
+  let [image, setImage] = useState(null);
+
+  useEffect(() => {
+    getPermissionAsync();
+  }, []);
+
+  const getPermissionAsync = async () => {
+    if (Constants.platform.ios) {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status !== "granted") {
+        alert("Sorry, we need camera roll permissions to make this work!");
+      }
+    }
+  };
+
+  const pickImage = async () => {
+    try {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+      if (!result.cancelled) {
+        setImage(result.uri);
+      }
+    } catch (E) {
+      console.log(E);
+    }
+  };
+
   return (
     <Container>
       <Header>
@@ -38,9 +72,15 @@ export default function LogScreen() {
           <Button info style={styles.button}>
             <Text> Take Photo </Text>
           </Button>
-          <Button info style={styles.button}>
+          <Button info style={styles.button} onPress={pickImage}>
             <Text> Choose From Camera Roll </Text>
           </Button>
+          {image && (
+            <Image
+              source={{ uri: image }}
+              style={{ width: 200, height: 200 }}
+            />
+          )}
         </Body>
       </Content>
     </Container>
