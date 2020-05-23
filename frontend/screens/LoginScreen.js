@@ -1,72 +1,117 @@
 import React, { Component } from "react";
 import { Thumbnail, Button, Text, View } from "native-base";
+import { Image } from "react-native";
 import Swiper from "react-native-swiper";
 
+import naturedexTitle from "../assets/images/naturedexTitle.png";
+import tree from "../assets/images/tree.png";
+import camera from "../assets/images/camera.png";
+import ntbk from "../assets/images/ntbk.png";
+import mag from "../assets/images/magGlass.png";
+
 var styles = {
-  wrapper: {},
-  natureDex: {
-    textAlign: "center",
-    color: "#0c4210",
-    fontSize: 30,
-    fontWeight: "bold",
-  },
-  desc: {
-    textAlign: "center",
-    color: "#fff",
-    fontSize: 30,
-    fontWeight: "bold",
-    padding: 8,
-  },
-  loginDesc: {
-    textAlign: "center",
-    color: "#fff",
-    fontSize: 30,
-    fontWeight: "bold",
-    padding: 10,
-    paddingBottom: 15,
-  },
-  textStyle: {
-    color: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+    wrapper: {},
+    slide1: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#CCD9CD",
+    },
+    slide2: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#A4C2AA",
+    },
+    slide3: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#A4C2BB",
+    },
+    slide4: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#B4CDD0",
+    },
+    natureDex: {
+        flex: 1,
+        alignSelf: "center",
+    },
+    desc: {
+        flex: 1.7,
+        textAlign: "center",
+        color: "#0c4210",
+        fontSize: 30,
+        fontWeight: "bold",
+        padding: 8,
+        paddingTop: 10,
+    },
+    loginDesc: {
+        flex: 1.7,
+        textAlign: "center",
+        color: "#0c4210",
+        fontSize: 30,
+        fontWeight: "bold",
+    },
+    icon: {
+        flex: 1.7,
+        width: 230,
+        height: 230,
+    },
+    textStyle: {
+        color: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+    },
 };
 
 export default function SwiperComponent(props) {
-  const signInWithGoogle = () => {
-    props.navigation.navigate("Root");
-  };
+    const signInWithGoogle = () => {
+        props.navigation.navigate("Root");
+    };
 
-  return (
-    <Swiper style={styles.wrapper} showsButtons loop={false}>
-      <View style={{ backgroundColor: "#c0dcc3" }}>
-        <Text style={styles.desc}>
-          Identify plants when you're out and about!
-        </Text>
-      </View>
-      <View style={{ backgroundColor: "#cA4C2AA" }}>
-        <Text style={styles.desc}>
-          identify plants instantly by just snapping a photo!
-        </Text>
-      </View>
-      <View style={{ backgroundColor: "#cA4C2BB" }}>
-        <Text style={styles.desc}>
-          Keep track of all the plants you’ve seen before!
-        </Text>
-      </View>
-      <View style={{ backgroundColor: "#B4CDD0" }}>
-        <Text style={styles.desc}>Go capture them all!</Text>
-        <Button style={styles.GoogleStyle} onPress={signInWithGoogle}>
-          <Thumbnail
-            small
-            source={{
-              uri: "https://img.icons8.com/color/48/000000/google-logo.png",
-            }}
-            style={{ marginLeft: 9 }}
-          />
-          <Text style={styles.TextStyle}>Sign in with Google</Text>
-        </Button>
-      </View>
-    </Swiper>
-  );
+    return (
+        <Swiper style={styles.wrapper} showsButtons loop={false}>
+            <View style={styles.slide1}>
+                <Image source={naturedexTitle} style={styles.natureDex}></Image>
+                <Image source={tree} style={styles.icon}></Image>
+                <Text style={styles.desc}>
+                    Identify plants when you're out and about!
+                </Text>
+            </View>
+            <View style={styles.slide2}>
+                <Image source={naturedexTitle} style={styles.natureDex}></Image>
+                <Image source={camera} style={styles.icon}></Image>
+                <Text style={styles.desc}>
+                    Learn more about any plant instantly by just snapping a
+                    photo!
+                </Text>
+            </View>
+            <View style={styles.slide3}>
+                <Image source={naturedexTitle} style={styles.natureDex}></Image>
+                <Image source={ntbk} style={styles.icon}></Image>
+                <Text style={styles.desc}>
+                    Keep track of all the plants you’ve seen before!
+                </Text>
+            </View>
+            <View style={styles.slide4}>
+                <Image source={naturedexTitle} style={styles.natureDex}></Image>
+                <Image source={mag} style={styles.icon}></Image>
+                <Text style={styles.loginDesc}>Go capture them all!</Text>
+                <Button style={styles.GoogleStyle} onPress={signInWithGoogle}>
+                    <Thumbnail
+                        small
+                        source={{
+                            uri:
+                                "https://img.icons8.com/color/48/000000/google-logo.png",
+                        }}
+                        style={{ marginLeft: 9 }}
+                    />
+                    <Text style={styles.TextStyle}>Sign in with Google</Text>
+                </Button>
+            </View>
+        </Swiper>
+    );
 }
