@@ -21,6 +21,8 @@ export default function ProfileScreen() {
     fetchData();
   }, []);
 
+  //TODO: This is showing only one plant?
+
   return (
     <Container>
       <Header>
@@ -29,15 +31,11 @@ export default function ProfileScreen() {
         </Body>
       </Header>
       <Content padder>
-        <Body>
-          <Plant 
-            title = "Rose"
-            image = "https://d384u2mq2suvbq.cloudfront.net/public/spree/products/1693/original/Red-Rose-Fragrance-Oil.jpg"
-            name = "Rosa"
-            date= "Date"
-            link = "https://en.wikipedia.org/wiki/Rose"
-          />
-        </Body>
+          {plants.length == 0 ? (
+            <Text>You don't haven't seen any flowers, get looking!</Text>
+          ) : (
+            plants.map((plant) => <Plant plant={plant} key={plant._id} />)
+          )}
       </Content>
     </Container>
   );
