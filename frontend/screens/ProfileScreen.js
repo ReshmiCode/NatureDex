@@ -23,9 +23,9 @@ export default function ProfileScreen() {
     <Container>
       <Content padder>
         {plants.length == 0 ? (
-          <Text style={{textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5}}>You don't haven't seen any flowers, get looking!</Text>
+          <Text>You don't haven't seen any flowers, get looking!</Text>
         ) : (
-          plants.map((plant) => <Plant style={{textShadowColor: 'rgba(0, 0, 0, 0.3)', textShadowOffset: {width: 0, height: 1}, textShadowRadius: 5}}plant={plant} key={plant._id} />)
+          plants.map((plant) => <Plant plant={plant} key={plant._id} />)
         )}
       </Content>
     </Container>
