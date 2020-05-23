@@ -10,6 +10,10 @@ import LoginScreen from "./screens/LoginScreen";
 const Stack = createStackNavigator();
 
 export default function App(props) {
+  // return(
+  //   <LoginScreen/>
+  // );
+   
   const isLoadingComplete = useCachedResources();
 
   if (!isLoadingComplete) {
