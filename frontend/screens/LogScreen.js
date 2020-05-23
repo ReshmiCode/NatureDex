@@ -11,6 +11,15 @@ import {
 } from "native-base";
 import plants from "../assets/images/plantoutlines.png";
 
+var styles = {
+  button: {
+    width: 300,
+    margin: 10,
+    borderRadius: 5,
+    justifyContent: "center",
+  },
+};
+
 export default function LogScreen() {
   return (
     <Container>
@@ -23,14 +32,11 @@ export default function LogScreen() {
         <Body>
           <Title>Identify a plant by a picture!</Title>
           <Text>Please make sure the plant is centered in the photo.</Text>
-          <Image
-            source={plants}
-            style={{ height: 200, width: null, flex: 1 }}
-          />
-          <Button info>
+          <Image source={plants} style={{ height: 300, width: 300, flex: 1 }} />
+          <Button info style={styles.button}>
             <Text> Take Photo </Text>
           </Button>
-          <Button info>
+          <Button info style={styles.button}>
             <Text> Choose From Camera Roll </Text>
           </Button>
         </Body>
