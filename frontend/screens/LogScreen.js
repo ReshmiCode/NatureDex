@@ -59,7 +59,7 @@ export default function LogScreen() {
 
   const addPlant = async () => {
     const data = {
-      images: [imageBase],
+      images: ["data:image/jpeg;base64," + imageBase],
       //modifiers: ["crops_fast", "similar_images"],
       //plant_details: ["common_names", "taxonomy", "url", "wiki_description"],
       //plant_language: "en",
