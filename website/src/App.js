@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./App.css";
 import { Button } from "@material-ui/core";
-import GoogleLogin from 'react-google-login';
+import {GoogleLogin , GoogleLogout} from 'react-google-login';
 
 import {CLIENT_ID} from './config';
 
@@ -17,6 +17,11 @@ function App() {
     console.log(response);
   }
 
+  const responseGoogleLogOut = (response) => {
+    console.log(response);
+    setSignedIn(false);
+  }
+
   function SignedIn(){
     return(
       <div>
@@ -24,8 +29,14 @@ function App() {
           These are your plants!
         </p>
         <div className="button-area">
-          <Button className="button" variant="contained" onClick={() => setSignedIn(false)}>
-            <p>Logout</p>
+        <Button>
+            <GoogleLogout
+              clientId={CLIENT_ID}
+              buttonText="LogOut"
+              onLogoutSuccess={responseGoogleLogOut}
+              //onFailure={responseGoogleFail}
+              cookiePolicy={'single_host_origin'}
+            />
           </Button>
         </div>
     </div>
