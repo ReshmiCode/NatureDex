@@ -23,7 +23,17 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "come.naturedex.app",
+      "buildNumber": "1.0.0",
+      "backgroundColor": "#abc2a5",
+      "icon": "./assets/images/tree.png",
+      "supportsTablet": true,
+      "usesIcloudStorage": true,
+      "splash": {
+        "image": "./assets/images/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      }
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
