@@ -17,7 +17,7 @@ export default function PlantScreen(props) {
       <Content padder>
         <Body>
           <Title style={{ fontSize: 25 }}>
-            {plant.description.plant_name
+            {plant.description.plant_details.common_names[0]
               .split(" ")
               .map(
                 (item) => item.substring(0, 1).toUpperCase() + item.substring(1)
@@ -28,7 +28,7 @@ export default function PlantScreen(props) {
             source={{ uri: plant.image }}
             style={{ height: 250, width: 250, flex: 1 }}
           />
-          <Title>Name: {plant.description.plant_details.common_names[0]}</Title>
+          <Title>Scientific Name: {plant.description.plant_name}</Title>
           <Title>Class: {plant.description.plant_details.taxonomy.class}</Title>
           <Text>{plant.description.plant_details.wiki_description.value}</Text>
           <Button
