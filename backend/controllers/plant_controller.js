@@ -21,6 +21,22 @@ exports.addPlant = async (req, res, next) => {
     try {
         const plant = await Plant.create(req.body);
 
+        try {
+            const user = await axios.get(
+              `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${plant.userID}`
+            );
+            const newPlants = user.data.data[0].plants;
+            newPlants.push(plant._id.toString());
+            await axios.patch(
+              `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${plant.userID}`,
+              {
+                plants: newPlants,
+              }
+            );
+        } catch (err) {
+            console.log(err);
+        }
+
         return res.status(201).json({
             success: true,
             data: plant
@@ -74,7 +90,6 @@ exports.deletePlant = async (req, res, next) => {
         const plant = await Plant.findById(req.params.id);
 
         const plantToDelete = plant._id;
-        console.log(plantToDelete);
 
         if(!plant){
             return res.status(404).json({
@@ -90,11 +105,8 @@ exports.deletePlant = async (req, res, next) => {
               `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${plant.userID}`
             );
             const newPlants = user.data.data[0].plants;
-            console.log(newPlants);
             var index = newPlants.indexOf(plantToDelete.toString());
-            console.log(index);
             if (index !== -1) newPlants.splice(index, 1);
-            console.log(newPlants);
             await axios.patch(
               `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${plant.userID}`,
               {
