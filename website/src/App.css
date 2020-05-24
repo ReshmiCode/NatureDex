@@ -29,6 +29,8 @@
 .button-area {
   padding-top: 5px;
   padding-bottom: 5px;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes App-logo-spin {

@@ -1,9 +1,47 @@
-import React from "react";
+import React, {useState} from "react";
 import "./App.css";
 import { Button } from "@material-ui/core";
-import GoogleButton from 'react-google-button'
+import GoogleLogin from 'react-google-login';
+
+import {CLIENT_ID} from './config';
 
 function App() {
+  let [signedIn, setSignedIn] = useState(false);
+
+  const responseGoogleSuccess = (response) => {
+    console.log(response);
+    setSignedIn(true);
+  }
+
+  const responseGoogleFail = (response) => {
+    console.log(response);
+  }
+
+  function SignedIn(){
+
+  }
+
+  function SignedOut() {
+    return(
+      <div>
+        <div className="button-area">
+          <Button>
+            <GoogleLogin
+              clientId={CLIENT_ID}
+              buttonText="Login"
+              onSuccess={responseGoogleSuccess}
+              onFailure={responseGoogleFail}
+              cookiePolicy={'single_host_origin'}
+            />
+          </Button>
+        </div>
+        <p>
+          Want to see your plants? Login above!
+        </p>
+      </div>
+    )
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -28,14 +66,12 @@ function App() {
           After analysis, NatureDex provides the common and scientific names of the identified plant so you can easily learn more about the plants you find.
           NatureDex also keeps a record of all the plants you’ve spotted before so you can look back at all of the trees and plants you’ve “captured”!
         </p>
-        <div className="button-area">
-          <GoogleButton
-            onClick={() => { console.log('Google button clicked') }}
-          />
-        </div>
-        <p>
-          Want to see your plants? Login above!
-        </p>
+
+        {signedIn
+          ? <p>SignedIn</p>
+          : SignedOut()
+        }
+
         <div className="button-area">
           <Button className="button" variant="contained">
             <a href="https://devpost.com/software/naturedex">More Info</a>
