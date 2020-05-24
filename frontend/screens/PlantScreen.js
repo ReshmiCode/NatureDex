@@ -26,7 +26,6 @@ export default function PlantScreen(props) {
           />
           <Text>Name: {plant.description.plant_details.common_names[0]}</Text>
           <Text>Class: {plant.description.plant_details.taxonomy.class}</Text>
-          <Text>Date Captured: get from database</Text>
           <Text>{plant.description.plant_details.wiki_description.value}</Text>
           <Button
             info
