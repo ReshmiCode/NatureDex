@@ -1,6 +1,7 @@
 import React from "react";
 import { Image } from "react-native";
 import { Text, Title, Card, CardItem, Body, View } from "native-base";
+import Pixelify from "./Pixelify";
 import moment from "moment";
 
 export default function Plant(props) {
@@ -35,12 +36,18 @@ export default function Plant(props) {
               backgroundColor: "#B4CDD1",
             }}
           >
-            <Image
+            <Pixelify
+              src={props.plant.image}
+              pixelSize={20}
+              height={220}
+              width={270}
+            />
+            {/*<Image
               source={{
                 uri: props.plant.image,
               }}
               style={{ height: 220, width: 270 }}
-            />
+            />*/}
           </View>
         </CardItem>
 
