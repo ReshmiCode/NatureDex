@@ -41,3 +41,8 @@
     transform: rotate(360deg);
   }
 }
+
+.card-padding {
+  padding: 15px 15px 15px 15px;
+}
+
