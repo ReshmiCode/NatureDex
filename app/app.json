@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "frontend",
-    "slug": "frontend",
+    "name": "NatureDex",
+    "slug": "NatureDex",
     "platforms": [
       "ios",
       "android",
@@ -44,6 +44,12 @@
         "image": "./assets/images/splash.png",
         "resizeMode": "contain",
         "backgroundColor": "#ffffff"
+      },
+      "config": {
+        "googleSignIn": {
+          "apiKey": "294101273347-0pi8va3dof36cuv6mlurf7kqkelv9r3n.apps.googleusercontent.com",
+          "certificateHash": "64:57:0E:63:F7:61:27:EF:F0:A1:6B:29:2A:37:11:F6:FE:BC:D3:A2"
+        }
       }
     }
   }
