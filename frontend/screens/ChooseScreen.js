@@ -60,12 +60,12 @@ export default function ChooseScreen(props) {
             }}
             style={{ width: 300, height: 300, borderRadius: 10, margin: 20 }}
           />
-          <Button style={{marginBottom: 15}} onPress={() => addPlant(plant)}>
-            <Text style={{color: "#fff"}} >Select</Text>
+          <Button style={{ marginBottom: 15 }} onPress={() => addPlant(plant)}>
+            <Text>Select</Text>
           </Button>
 
           <Button onPress={() => setChoices(true)}>
-            <Text style={{color: "#fff"}} >See Other Choices</Text>
+            <Text>See Other Choices</Text>
           </Button>
         </Body>
       </Content>
