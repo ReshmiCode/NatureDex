@@ -1,4 +1,5 @@
 const Plant = require('../models/plant_model');
+const axios = require("axios").default;
 
 exports.getPlants = async (req, res, next) => {    
     try {
@@ -72,6 +73,9 @@ exports.deletePlant = async (req, res, next) => {
     try {
         const plant = await Plant.findById(req.params.id);
 
+        const plantToDelete = plant._id;
+        console.log(plantToDelete);
+
         if(!plant){
             return res.status(404).json({
                 success: false,
@@ -80,6 +84,26 @@ exports.deletePlant = async (req, res, next) => {
         }
 
         await plant.remove();
+
+        try {
+            const user = await axios.get(
+              `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${plant.userID}`
+            );
+            const newPlants = user.data.data[0].plants;
+            console.log(newPlants);
+            var index = newPlants.indexOf(plantToDelete.toString());
+            console.log(index);
+            if (index !== -1) newPlants.splice(index, 1);
+            console.log(newPlants);
+            await axios.patch(
+              `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${plant.userID}`,
+              {
+                plants: newPlants,
+              }
+            );
+        } catch (err) {
+            console.log(err);
+        }
 
         return res.status(200).json({
             success: true,
@@ -96,18 +120,19 @@ exports.deletePlant = async (req, res, next) => {
 
 exports.getUserPlant = async (req, res, next) => {    
     try {
-        const plant = await Plant.find({}).where({ "userID": req.params.id});
+        const plants = await Plant.find({}).where({ "userID": req.params.id});
 
-        if(!plant){
+        if(!plants){
             return res.status(404).json({
                 success: false,
-                error: 'No plant found'
+                error: 'No plants found'
             });
         }
 
         return res.status(200).json({
             success: true,
-            data: plant
+            count: plants.length,
+            data: plants
         });
 
     } catch (error) {
