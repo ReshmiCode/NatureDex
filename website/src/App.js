@@ -25,13 +25,13 @@ function App() {
   }
 
   function SignedIn(){
-    console.log("Google ID",googleID);
+    //console.log("Google ID",googleID);
     return(
       <div>
          <p>
             These are your plants:
           </p>
-          <UserPlants/>
+          <UserPlants user={googleID}/>
           <div className="button-area">
           <Button>
               <GoogleLogout
