@@ -51,5 +51,7 @@ export default function PlantScreen(props) {
 }
 
 function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync(plant.plant_details.wiki_description.citation);
+  WebBrowser.openBrowserAsync(
+    plant.description.plant_details.wiki_description.citation
+  );
 }
