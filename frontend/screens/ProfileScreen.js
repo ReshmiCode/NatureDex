@@ -21,7 +21,7 @@ export default function ProfileScreen(props) {
     const result = await axios(
       `https://backyardhacks2020.wl.r.appspot.com/api/v1/plants/user/${GLOBAL.id}`
     );
-    setPlants(result.data.data);
+    setPlants(result.data.data.reverse());
     setLoading(false);
   };
 
@@ -29,7 +29,6 @@ export default function ProfileScreen(props) {
     <Container style={{ padding: 10 }}>
       <FlatList
         data={plants}
-        inverted={true}
         showsVerticalScrollIndicator={false}
         renderItem={(plant) => (
           <Plant plant={plant.item} nav={props.navigation} />
