@@ -52,14 +52,7 @@ export default function Plant(props) {
               marginTop: -5,
             }}
           >
-            <Title
-              style={{
-                color: "#fff",
-                textShadowColor: "rgba(0, 0, 0, 0.3)",
-                textShadowOffset: { width: 0, height: 1 },
-                textShadowRadius: 5,
-              }}
-            >
+            <Title            >
               {props.plant.description.plant_name}
             </Title>
           </Body>
@@ -70,11 +63,6 @@ export default function Plant(props) {
             <Text
               style={{
                 marginTop: -20,
-                textAlign: "center",
-                color: "#fff",
-                textShadowColor: "rgba(0, 0, 0, 0.3)",
-                textShadowOffset: { width: 0, height: 1 },
-                textShadowRadius: 5,
               }}
             >
               {moment(props.plant.date_added).format("l")}
