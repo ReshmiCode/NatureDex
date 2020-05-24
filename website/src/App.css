@@ -14,14 +14,14 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #A4C2AA;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #4A5754;
   padding-left: 5rem;
   padding-right: 5rem;
 }
@@ -31,6 +31,7 @@
   padding-bottom: 5px;
   align-items: center;
   justify-content: center;
+  
 }
 
 @keyframes App-logo-spin {
@@ -44,9 +45,21 @@
 
 .card-padding {
   padding: 15px 15px 15px 15px;
+
 }
 
 .image{
   height: 100px;
   width: 100px;
+}
+
+.card-body{
+  background-color: #B4CDD1;
+  border-radius: 1em;
+  color: #4A5754;
+}
+
+p.card-text{
+  margin-right: 2em;
+  margin-left: 2em;
 }
