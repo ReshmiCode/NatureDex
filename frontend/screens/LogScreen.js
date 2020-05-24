@@ -30,6 +30,11 @@ export default function LogScreen(props) {
   let [imageBase, setImageBase] = useState(null);
   let [loading, setLoading] = useState(false);
 
+  const removePic = () => {
+    setImage(null);
+    setImageBase(null);
+  };
+
   const getPickerPermission = async () => {
     if (Constants.platform.ios) {
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -88,7 +93,10 @@ export default function LogScreen(props) {
       );
       plantData = response.data;
       setLoading(false);
-      props.navigation.navigate("ChoosePlant", { data: plantData });
+      props.navigation.navigate("ChoosePlant", {
+        data: plantData,
+        resetImage: removePic,
+      });
     } catch (err) {
       console.log(err);
     }
@@ -120,9 +128,6 @@ export default function LogScreen(props) {
               fontSize: 20,
               fontWeight: "bold",
               marginBottom: 0,
-              textShadowColor: "rgba(0, 0, 0, 0.3)",
-              textShadowOffset: { width: 0, height: 1 },
-              textShadowRadius: 5,
             }}
           >
             Identify a plant by a picture!
@@ -130,39 +135,17 @@ export default function LogScreen(props) {
           <Text
             style={{
               fontSize: 14,
-              color: "#fff",
               marginHorizontal: 40,
               textAlign: "center",
-              textShadowColor: "rgba(0, 0, 0, 0.3)",
-              textShadowOffset: { width: 0, height: 1 },
-              textShadowRadius: 5,
             }}
           >
             Please make sure the plant is centered in the photo.
           </Text>
           <Button style={styles.button} onPress={takeImage}>
-            <Title
-              style={{
-                textShadowColor: "rgba(0, 0, 0, 0.3)",
-                textShadowOffset: { width: 0, height: 1 },
-                textShadowRadius: 5,
-              }}
-            >
-              {" "}
-              Take Photo{" "}
-            </Title>
+            <Title> Take Photo </Title>
           </Button>
           <Button style={styles.button} onPress={pickImage}>
-            <Title
-              style={{
-                textShadowColor: "rgba(0, 0, 0, 0.3)",
-                textShadowOffset: { width: 0, height: 1 },
-                textShadowRadius: 5,
-              }}
-            >
-              {" "}
-              Choose From Camera Roll{" "}
-            </Title>
+            <Title> Choose From Camera Roll </Title>
           </Button>
           {image ? (
             <Image
@@ -180,16 +163,7 @@ export default function LogScreen(props) {
               <Spinner color="green" />
             ) : (
               <Button style={styles.button} onPress={identifyPlant}>
-                <Title
-                  style={{
-                    textShadowColor: "rgba(0, 0, 0, 0.3)",
-                    textShadowOffset: { width: 0, height: 1 },
-                    textShadowRadius: 5,
-                  }}
-                >
-                  {" "}
-                  Submit{" "}
-                </Title>
+                <Title> Submit </Title>
               </Button>
             ))}
         </Body>

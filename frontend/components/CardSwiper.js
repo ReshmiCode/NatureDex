@@ -34,31 +34,30 @@ export default CardSwiper = (props) => {
           flexDirection: "row",
           flex: 1,
           position: "absolute",
-          bottom: 50,
+          bottom: 90,
           left: 0,
           right: 0,
-          justifyContent: "space-between",
+          justifyContent: "center",
           padding: 15,
         }}
       >
         <Button
-          iconLeft
+          style={{ marginRight: 20 }}
           onPress={() => {
             swiper.current._root.swipeLeft();
             swiper.current.props.onSwipeLeft();
           }}
         >
-          <Icon name="arrow-back" />
-          <Text>Not This One</Text>
+          <Icon name={"md-close-circle"} />
+          <Text>Incorrect</Text>
         </Button>
         <Button
-          iconRight
           onPress={() => {
             swiper.current._root.swipeRight();
             swiper.current.props.onSwipeRight();
           }}
         >
-          <Icon name="arrow-forward" />
+          <Icon name={"md-checkmark-circle"} />
           <Text>Select</Text>
         </Button>
       </View>
@@ -67,11 +66,10 @@ export default CardSwiper = (props) => {
           flexDirection: "row",
           flex: 1,
           position: "absolute",
-          bottom: 20,
+          bottom: 40,
           left: 0,
           right: 0,
-          marginTop: 15,
-          alignSelf: "center",
+          justifyContent: "center",
         }}
       >
         <Button onPress={() => props.navigation.navigate("AddImage")}>

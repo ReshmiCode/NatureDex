@@ -264,8 +264,8 @@ export default {
   tabFontSize: 15,
 
   // Text
-  textColor: "#000",
-  inverseTextColor: "#000",
+  textColor: "#4A5754",
+  inverseTextColor: "#4A5754",
   noteFontSize: 14,
   get defaultTextColor() {
     return this.textColor;
@@ -275,8 +275,8 @@ export default {
   titleFontfamily: platform === PLATFORM.IOS ? "System" : "Roboto_medium",
   titleFontSize: platform === PLATFORM.IOS ? 17 : 19,
   subTitleFontSize: platform === PLATFORM.IOS ? 11 : 14,
-  subtitleColor: platform === PLATFORM.IOS ? "#fff" : "#fff",
-  titleFontColor: platform === PLATFORM.IOS ? "#fff" : "#fff",
+  subtitleColor: platform === PLATFORM.IOS ? "#4A5754" : "#4A5754",
+  titleFontColor: platform === PLATFORM.IOS ? "#4A5754" : "#4A5754",
 
   // Other
   borderRadiusBase: platform === PLATFORM.IOS ? 5 : 2,

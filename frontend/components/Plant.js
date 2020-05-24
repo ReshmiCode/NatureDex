@@ -14,7 +14,7 @@ export default function Plant(props) {
         style={{
           backgroundColor: "#B4CDD1",
           width: 300,
-          height: 320,
+          height: 310,
           borderRadius: 0,
         }}
       >
@@ -49,19 +49,10 @@ export default function Plant(props) {
             style={{
               justifyContent: "center",
               alignItems: "center",
-              marginTop: -5,
+              marginTop: -15,
             }}
           >
-            <Title
-              style={{
-                color: "#fff",
-                textShadowColor: "rgba(0, 0, 0, 0.3)",
-                textShadowOffset: { width: 0, height: 1 },
-                textShadowRadius: 5,
-              }}
-            >
-              {props.plant.description.plant_name}
-            </Title>
+            <Title>{props.plant.description.plant_name}</Title>
           </Body>
         </CardItem>
 
@@ -70,11 +61,6 @@ export default function Plant(props) {
             <Text
               style={{
                 marginTop: -20,
-                textAlign: "center",
-                color: "#fff",
-                textShadowColor: "rgba(0, 0, 0, 0.3)",
-                textShadowOffset: { width: 0, height: 1 },
-                textShadowRadius: 5,
               }}
             >
               {moment(props.plant.date_added).format("l")}

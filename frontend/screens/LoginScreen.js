@@ -172,7 +172,7 @@ export default function SwiperComponent(props) {
             }}
             style={{ marginLeft: 9 }}
           />
-          <Text style={styles.TextStyle}>Sign In With Google</Text>
+          <Text style={styles.TextStyle, { color: '#000' }}>Sign In With Google</Text>
         </Button>
         <Text style={styles.loginDesc}>Go capture them all!</Text>
       </View>
