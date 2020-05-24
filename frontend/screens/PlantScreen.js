@@ -4,15 +4,16 @@ import { Image } from "react-native";
 import { Container, Body, Content, Title, Text, Button } from "native-base";
 import response from "../assets/sampleResponse.json";
 
-const plant = response.suggestions[0];
+export default function PlantScreen(props) {
+  const { plant } = props.route.params;
+  console.log(plant);
 
-export default function PlantScreen() {
   return (
     <Container>
       <Content padder>
         <Body>
           <Title style={{ fontSize: 25 }}>
-            {plant.plant_name
+            {plant.description.plant_name
               .split(" ")
               .map(
                 (item) => item.substring(0, 1).toUpperCase() + item.substring(1)
@@ -20,13 +21,13 @@ export default function PlantScreen() {
               .join(" ")}
           </Title>
           <Image
-            source={{ uri: response.images[0].url }}
+            source={{ uri: plant.image }}
             style={{ height: 250, width: 250, flex: 1 }}
           />
-          <Text>Name: {plant.plant_details.common_names[0]}</Text>
-          <Text>Class: {plant.plant_details.taxonomy.class}</Text>
+          <Text>Name: {plant.description.plant_details.common_names[0]}</Text>
+          <Text>Class: {plant.description.plant_details.taxonomy.class}</Text>
           <Text>Date Captured: get from database</Text>
-          <Text>{plant.plant_details.wiki_description.value}</Text>
+          <Text>{plant.description.plant_details.wiki_description.value}</Text>
           <Button
             info
             style={{ margin: 10, borderRadius: 5 }}
@@ -37,11 +38,11 @@ export default function PlantScreen() {
           <Text>More Images:</Text>
           <Body style={{ flex: 1, flexDirection: "row" }}>
             <Image
-              source={{ uri: plant.similar_images[0].url }}
+              source={{ uri: plant.description.similar_images[0].url }}
               style={{ height: 150, width: 150, flex: 1 }}
             />
             <Image
-              source={{ uri: plant.similar_images[1].url }}
+              source={{ uri: plant.description.similar_images[1].url }}
               style={{ height: 150, width: 150, flex: 1 }}
             />
           </Body>

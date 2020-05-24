@@ -21,7 +21,9 @@ export default function Plant(props) {
         <CardItem
           cardBody
           button
-          onPress={() => props.nav.navigate("PlantDetail")}
+          onPress={() =>
+            props.nav.navigate("PlantDetail", { plant: props.plant })
+          }
         >
           <View
             style={{
