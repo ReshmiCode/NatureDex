@@ -33,6 +33,11 @@
         "image": "./assets/images/splash.png",
         "resizeMode": "contain",
         "backgroundColor": "#ffffff"
+      },
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "294101273347-ehp412m2u5vfqcc3kbr5efhmv1df7rah.apps.googleusercontent.com"
+        }
       }
     },
     "web": {

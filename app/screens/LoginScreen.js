@@ -4,7 +4,7 @@ import { Thumbnail, Button, Text, View } from "native-base";
 import { Image } from "react-native";
 import Swiper from "react-native-swiper";
 
-import { ANDROID_CLIENT_ID, IOS_CLIENT_ID , ANDROID_APK_CLIENT_ID} from "../config";
+import { ANDROID_CLIENT_ID, IOS_CLIENT_ID , ANDROID_APK_CLIENT_ID , IOS_APP_CLIENT_ID} from "../config";
 import naturedexTitle from "../assets/images/naturedexTitle.png";
 import tree from "../assets/images/tree.png";
 import camera from "../assets/images/camera.png";
@@ -118,6 +118,7 @@ export default function SwiperComponent(props) {
         iosClientId: IOS_CLIENT_ID,
         androidClientId: ANDROID_CLIENT_ID,
         androidStandaloneAppClientId: ANDROID_APK_CLIENT_ID,
+        iosStandaloneAppClientId: IOS_APP_CLIENT_ID,
         scopes: ["profile", "email"],
       });
 
