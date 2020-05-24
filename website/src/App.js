@@ -19,9 +19,16 @@ function App() {
 
   function SignedIn(){
     return(
-      <Button onClick={() => setSignedIn(false)}>
-        <p>Logout</p>
-      </Button>
+      <div>
+         <p>
+          These are your plants!
+        </p>
+        <div className="button-area">
+          <Button className="button" variant="contained" onClick={() => setSignedIn(false)}>
+            <p>Logout</p>
+          </Button>
+        </div>
+    </div>
     );
   }
 
