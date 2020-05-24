@@ -4,6 +4,7 @@ import { Button } from "@material-ui/core";
 import {GoogleLogin , GoogleLogout} from 'react-google-login';
 
 import {CLIENT_ID} from './config';
+import UserPlants from './components/UserPlants'
 
 function App() {
   let [signedIn, setSignedIn] = useState(false);
@@ -28,19 +29,20 @@ function App() {
     return(
       <div>
          <p>
-          These are your plants!
-        </p>
-        <div className="button-area">
-        <Button>
-            <GoogleLogout
-              clientId={CLIENT_ID}
-              buttonText="LogOut"
-              onLogoutSuccess={responseGoogleLogOut}
-              //onFailure={responseGoogleFail}
-              cookiePolicy={'single_host_origin'}
-            />
-          </Button>
-        </div>
+            These are your plants:
+          </p>
+          <UserPlants/>
+          <div className="button-area">
+          <Button>
+              <GoogleLogout
+                clientId={CLIENT_ID}
+                buttonText="LogOut"
+                onLogoutSuccess={responseGoogleLogOut}
+                //onFailure={responseGoogleFail}
+                cookiePolicy={'single_host_origin'}
+              />
+            </Button>
+          </div>
     </div>
     );
   }
