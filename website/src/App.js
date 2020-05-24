@@ -62,7 +62,7 @@ function App() {
           </Button>
         </div>
         <p>
-          Want to see your plants? Login above!
+          Want to see your plants? Login above with your Google account!
         </p>
       </div>
     )
@@ -71,11 +71,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>NatureDex... Gotta Catch Em Call</h1>
+        <h1>NatureDex: "Pokedex but make it plants"</h1>
         <p>
           When going for a hike or a walk, you see lots of different plants.
           Ever seen a beautiful flower and wondered what it was called?
-          Or a tree with unique leaves whose name you just can’t quite remember?
+          Or a tree whose name you just can’t quite remember?
           NatureDex is here to help you identify and keep track of all the cool plants you encounter on your adventures!
         </p>
         <iframe
