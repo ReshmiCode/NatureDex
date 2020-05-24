@@ -98,6 +98,12 @@ function App() {
           : SignedOut()
         }
 
+
+        <div className="button-area">
+          <Button className="button" variant="contained">
+            <a href="https://github.com/ReshmiCode/BackyardHacks20/blob/master/app/NatureDex-8abea0ad754c4daeba8a83cb32a4019c-signed.apk">Download Android App</a>
+          </Button>
+        </div>
         <div className="button-area">
           <Button className="button" variant="contained">
             <a href="https://devpost.com/software/naturedex">More Info</a>
