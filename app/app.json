@@ -23,7 +23,22 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "come.naturedex.app",
+      "buildNumber": "1.0.0",
+      "backgroundColor": "#abc2a5",
+      "icon": "./assets/images/tree_icon.png",
+      "supportsTablet": true,
+      "usesIcloudStorage": true,
+      "splash": {
+        "image": "./assets/images/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      },
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "294101273347-ehp412m2u5vfqcc3kbr5efhmv1df7rah.apps.googleusercontent.com"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
