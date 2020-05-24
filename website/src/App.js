@@ -7,9 +7,11 @@ import {CLIENT_ID} from './config';
 
 function App() {
   let [signedIn, setSignedIn] = useState(false);
+  let [googleID, setGoogleID] = useState('');
 
   const responseGoogleSuccess = (response) => {
     console.log(response);
+    setGoogleID(response.Ea);
     setSignedIn(true);
   }
 
@@ -18,11 +20,11 @@ function App() {
   }
 
   const responseGoogleLogOut = (response) => {
-    console.log(response);
     setSignedIn(false);
   }
 
   function SignedIn(){
+    console.log("Google ID",googleID);
     return(
       <div>
          <p>
