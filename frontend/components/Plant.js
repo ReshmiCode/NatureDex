@@ -14,7 +14,7 @@ export default function Plant(props) {
         style={{
           backgroundColor: "#B4CDD1",
           width: 300,
-          height: 320,
+          height: 310,
           borderRadius: 0,
         }}
       >
@@ -49,12 +49,10 @@ export default function Plant(props) {
             style={{
               justifyContent: "center",
               alignItems: "center",
-              marginTop: -5,
+              marginTop: -15,
             }}
           >
-            <Title            >
-              {props.plant.description.plant_name}
-            </Title>
+            <Title>{props.plant.description.plant_name}</Title>
           </Body>
         </CardItem>
 

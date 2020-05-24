@@ -30,6 +30,11 @@ export default function LogScreen(props) {
   let [imageBase, setImageBase] = useState(null);
   let [loading, setLoading] = useState(false);
 
+  const removePic = () => {
+    setImage(null);
+    setImageBase(null);
+  };
+
   const getPickerPermission = async () => {
     if (Constants.platform.ios) {
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -88,7 +93,10 @@ export default function LogScreen(props) {
       );
       plantData = response.data;
       setLoading(false);
-      props.navigation.navigate("ChoosePlant", { data: plantData });
+      props.navigation.navigate("ChoosePlant", {
+        data: plantData,
+        resetImage: removePic,
+      });
     } catch (err) {
       console.log(err);
     }
@@ -134,16 +142,10 @@ export default function LogScreen(props) {
             Please make sure the plant is centered in the photo.
           </Text>
           <Button style={styles.button} onPress={takeImage}>
-            <Title>
-              {" "}
-              Take Photo{" "}
-            </Title>
+            <Title> Take Photo </Title>
           </Button>
           <Button style={styles.button} onPress={pickImage}>
-            <Title>
-              {" "}
-              Choose From Camera Roll{" "}
-            </Title>
+            <Title> Choose From Camera Roll </Title>
           </Button>
           {image ? (
             <Image
@@ -161,10 +163,7 @@ export default function LogScreen(props) {
               <Spinner color="green" />
             ) : (
               <Button style={styles.button} onPress={identifyPlant}>
-                <Title>
-                  {" "}
-                  Submit{" "}
-                </Title>
+                <Title> Submit </Title>
               </Button>
             ))}
         </Body>

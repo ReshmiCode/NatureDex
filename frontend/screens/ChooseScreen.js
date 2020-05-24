@@ -5,7 +5,7 @@ import CardSwiper from "../components/CardSwiper";
 const axios = require("axios").default;
 
 export default function ChooseScreen(props) {
-  const { data } = props.route.params;
+  const { data, resetImage } = props.route.params;
   const [choices, setChoices] = useState(false);
 
   const addPlant = async (plantData) => {
@@ -32,6 +32,7 @@ export default function ChooseScreen(props) {
     } catch (err) {
       console.log(err);
     }
+    resetImage();
     props.navigation.popToTop();
   };
 

@@ -13,6 +13,8 @@ import commonColor from "./native-base-theme/variables/commonColor";
 //import { Apploading, Font } from "expo";
 //import PlayfairDisplay from "./assets/fonts/PlayfairDisplay.ttf";
 
+console.disableYellowBox = true;
+
 const Stack = createStackNavigator();
 
 export default function App(props) {
@@ -40,10 +42,10 @@ export default function App(props) {
                   headerTitleAlign: "center",
                   headerLeft: null,
                   headerTitleStyle: {
-                    fontSize: 32, color: "#4A5754"
+                    fontSize: 32,
+                    color: "#4A5754",
                   },
                   headerStyle: {
-                    
                     backgroundColor: "#B4CDD1",
                   },
                 }}
