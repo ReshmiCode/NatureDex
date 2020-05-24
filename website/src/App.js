@@ -18,7 +18,11 @@ function App() {
   }
 
   function SignedIn(){
-
+    return(
+      <Button onClick={() => setSignedIn(false)}>
+        <p>Logout</p>
+      </Button>
+    );
   }
 
   function SignedOut() {
@@ -68,7 +72,7 @@ function App() {
         </p>
 
         {signedIn
-          ? <p>SignedIn</p>
+          ? SignedIn()
           : SignedOut()
         }
 
