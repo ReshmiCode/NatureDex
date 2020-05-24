@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Body,
@@ -14,6 +14,12 @@ import {
 } from "native-base";
 
 export default function SettingScreen() {
+  const [pokeMode, setpokeMode] = useState(false);
+  const [optMode, setOptMode] = useState(false);
+
+  const togglePokeSwitch = () => setpokeMode((previousState) => !previousState);
+  const toggleOptMode = () => setOptMode((previousState) => !previousState);
+
   return (
     <Container>
       <Content padder>
@@ -28,7 +34,7 @@ export default function SettingScreen() {
             <Text>Pokemon Mode</Text>
           </Body>
           <Right>
-            <Switch value={false} />
+            <Switch value={pokeMode} onValueChange={togglePokeSwitch} />
           </Right>
         </ListItem>
         <ListItem icon>
@@ -41,7 +47,7 @@ export default function SettingScreen() {
             <Text>See Plant Options</Text>
           </Body>
           <Right>
-            <Switch value={false} />
+            <Switch value={optMode} onValueChange={toggleOptMode} />
           </Right>
         </ListItem>
         <Button>
