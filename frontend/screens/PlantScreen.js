@@ -6,7 +6,8 @@ import response from "../assets/sampleResponse.json";
 
 const plant = response.suggestions[0];
 
-export default function PlantScreen() {
+export default function PlantScreen(props) {
+  console.log(props.route.params.plant);
   return (
     <Container>
       <Content padder>
