@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 30vmin;
   pointer-events: none;
 }
 
@@ -22,10 +22,13 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding-left: 5rem;
+  padding-right: 5rem;
 }
 
-.App-link {
-  color: #61dafb;
+.button-area {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 @keyframes App-logo-spin {
