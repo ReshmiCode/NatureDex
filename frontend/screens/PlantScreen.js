@@ -5,7 +5,12 @@ import { Container, Body, Content, Title, Text, Button } from "native-base";
 
 export default function PlantScreen(props) {
   const { plant } = props.route.params;
-  console.log(plant);
+
+  function handleLearnMorePress() {
+    WebBrowser.openBrowserAsync(
+      plant.description.plant_details.wiki_description.citation
+    );
+  }
 
   return (
     <Container>
@@ -47,11 +52,5 @@ export default function PlantScreen(props) {
         </Body>
       </Content>
     </Container>
-  );
-}
-
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync(
-    plant.description.plant_details.wiki_description.citation
   );
 }
