@@ -26,7 +26,7 @@
       "bundleIdentifier": "come.naturedex.app",
       "buildNumber": "1.0.0",
       "backgroundColor": "#abc2a5",
-      "icon": "./assets/images/tree.png",
+      "icon": "./assets/images/tree_icon.png",
       "supportsTablet": true,
       "usesIcloudStorage": true,
       "splash": {
