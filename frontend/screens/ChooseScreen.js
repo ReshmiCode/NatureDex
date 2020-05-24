@@ -10,23 +10,12 @@ export default function ChooseScreen(props) {
 
   const addPlant = async (plantData) => {
     try {
-      const user = await axios.get(
-        `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${GLOBAL.id}`
-      );
-      const newPlants = user.data.data[0].plants;
       const newPlant = await axios.post(
         "https://backyardhacks2020.wl.r.appspot.com/api/v1/plants",
         {
           userID: GLOBAL.id,
           image: data.images[0].url,
           description: plantData,
-        }
-      );
-      newPlants.push(newPlant.data.data._id);
-      await axios.patch(
-        `https://backyardhacks2020.wl.r.appspot.com/api/v1/users/${GLOBAL.id}`,
-        {
-          plants: newPlants,
         }
       );
     } catch (err) {
