@@ -19,7 +19,7 @@ export default function ProfileScreen(props) {
   const onRefresh = async () => {
     setLoading(true);
     const result = await axios(
-      `https://backyardhacks2020.wl.r.appspot.com/api/v1/plants/user/${GLOBAL.id}`
+      `https://hdt-node-servers.herokuapp.com/NatureDex/api/v1/plants/user/${GLOBAL.id}`
     );
     setPlants(result.data.data.reverse());
     setLoading(false);

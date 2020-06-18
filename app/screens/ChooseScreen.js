@@ -11,7 +11,7 @@ export default function ChooseScreen(props) {
   const addPlant = async (plantData) => {
     try {
       const newPlant = await axios.post(
-        "https://backyardhacks2020.wl.r.appspot.com/api/v1/plants",
+        "https://hdt-node-servers.herokuapp.com/NatureDex/api/v1/plants",
         {
           userID: GLOBAL.id,
           image: data.images[0].url,

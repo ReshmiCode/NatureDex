@@ -81,7 +81,7 @@ export default function SwiperComponent(props) {
     };
 
     const userDBLink =
-      "https://backyardhacks2020.wl.r.appspot.com/api/v1/users/" +
+      "https://hdt-node-servers.herokuapp.com/NatureDex/api/v1/users/" +
       newUser.googleID;
 
     axios
@@ -89,7 +89,7 @@ export default function SwiperComponent(props) {
       .then(function (response) {
         if (response.data.data.length == 0) {
           axios
-            .post("https://backyardhacks2020.wl.r.appspot.com/api/v1/users/", {
+            .post("https://hdt-node-servers.herokuapp.com/NatureDex/api/v1/users/", {
               googleID: newUser.googleID,
               userName: newUser.userName,
               profilePic: newUser.profilePic,
