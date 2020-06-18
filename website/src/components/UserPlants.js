@@ -9,7 +9,7 @@ function UserPlants(props) {
 
     useEffect(() => {
     async function fetchData() {
-        let url = 'https://backyardhacks2020.wl.r.appspot.com/api/v1/plants/user/' + props.user
+        let url = 'https://hdt-node-servers.herokuapp.com/NatureDex/api/v1/plants/user/' + props.user
         const response = await axios(url);
         //console.log(response);
         setPlants(response.data.data);
