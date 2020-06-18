@@ -1,6 +1,24 @@
 ## BackyardHacks20
 "pokedex but make it plants"
 
+## Created By
+
+- [Megan Tran](https://github.com/meganjtran)
+- [Reshmi Ranjith](https://github.com/ReshmiCode)
+- [Saloni Shivdasani](https://github.com/SaloniSS)
+- [Vincent Vu](https://github.com/vincent-vu280)
+
+## Links
+
+[Store Listing](https://play.google.com/store/apps/details?id=come.naturedex.app)   
+[Demo Video](https://www.youtube.com/watch?v=7IziS_e8zHM)  
+[Website](https://backyardhacks2020.firebaseapp.com/)  
+[Alternate Website](https://www.naturedex.space/)
+[Devpost Submission](https://devpost.com/software/naturedex)  
+
+## Submission
+Submitted for Hack The Northeast2020
+
 ## Inspiration
 When going for a hike or a walk, you see lots of different plants. Ever seen a beautiful flower and wondered what it was called? Or a tree whose name you just can’t quite remember? NatureDex is here to help you identify and keep track of all the cool plants you encounter on your adventures!
 
