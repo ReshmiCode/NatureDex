@@ -13,7 +13,7 @@
 [Store Listing](https://play.google.com/store/apps/details?id=come.naturedex.app)   
 [Demo Video](https://www.youtube.com/watch?v=7IziS_e8zHM)  
 [Website](https://backyardhacks2020.firebaseapp.com/)  
-[Alternate Website](https://www.naturedex.space/)
+[Alternate Website](https://www.naturedex.space/)  
 [Devpost Submission](https://devpost.com/software/naturedex)  
 
 ## Submission
