@@ -17,7 +17,11 @@
 [Devpost Submission](https://devpost.com/software/naturedex)  
 
 ## Submission
-Submitted for Hack The Northeast2020
+Submitted for BackyardHacks - MLH Summer League  2020
+
+### Awards
+
+First Overall (based on originality, technology, design, completion, learning and theme)
 
 ## Inspiration
 When going for a hike or a walk, you see lots of different plants. Ever seen a beautiful flower and wondered what it was called? Or a tree whose name you just can’t quite remember? NatureDex is here to help you identify and keep track of all the cool plants you encounter on your adventures!
